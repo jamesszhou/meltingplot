@@ -10,6 +10,8 @@ function LandingPage() {
     <>
       <IndexNavbar />
       <LandingPageHeader />
+          <img src={"http://localhost:5000/api/graph/?code=yolo" }/>
+
     </>
   );
 }
