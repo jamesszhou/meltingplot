@@ -1,17 +1,12 @@
 import React from "react";
 
 // core components
-import IndexNavbar from "../components/Navbars/IndexNavbar.js";
-import LandingPageHeader from "../components/Headers/LandingPageHeader.js";
+import GraphInputs from "../components/Input/GraphInputs.js";
 
 function LandingPage() {
-
   return (
     <>
-      <IndexNavbar />
-      <LandingPageHeader />
-          <img src={"http://localhost:5000/api/graph/?code=yolo" }/>
-
+      <GraphInputs/> 
     </>
   );
 }
