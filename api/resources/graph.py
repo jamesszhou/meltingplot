@@ -11,7 +11,7 @@ import numpy as np
 
 class Graph(Resource):
     def get(self):
-        code = generate_code(request.args["code"])
+        code = generate_code(request.args["config"])
         exec(code)
         buf = io.BytesIO()
         plt.savefig(buf, format='png')
