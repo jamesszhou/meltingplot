@@ -87,7 +87,7 @@ function ProjectPageHeader(props) {
                     <Form>
                         <FormGroup>
                             <Label>
-                                Description ({Math.max(0, 120-props.description.length)} characters left).
+                                Description ({Math.max(0, 120-props.description.length)} characters left)
                             </Label>
                             <Input 
                                 type="textarea" 
