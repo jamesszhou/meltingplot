@@ -1,4 +1,4 @@
-from ..database import db
+from api.database import db
 from marshmallow import fields, Schema
 from sqlalchemy.dialects.postgresql import JSON
 

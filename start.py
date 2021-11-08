@@ -16,7 +16,7 @@ db.init_app(app)
 api = Api(app)
 
 @app.route("/")
-def hello():
+def react():
     return render_template('index.html')
 
 api.add_resource(Graph, '/api/graph/')
