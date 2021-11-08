@@ -5,11 +5,12 @@ from flask_restful import Resource, reqparse
 from ..models.ProjectsModel import ProjectsModel, ProjectsSchema
 
 DATABASE_URL = os.environ['DATABASE_URL']
-# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-conn = psycopg2.connect(DATABASE_URL)
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# conn = psycopg2.connect(DATABASE_URL)
 cur = conn.cursor()
 
 project_schema = ProjectsSchema()
+projects_schema = ProjectsSchema(many=True)
 
 
 class Project(Resource):
@@ -47,7 +48,7 @@ class Project(Resource):
 
     def post(self):
         """
-        Create Blogpost Function
+        Create Project
         """
         req_data = jsonify(request.args).json
         try:
@@ -58,3 +59,19 @@ class Project(Resource):
         project.save()
         data = project_schema.dump(project)
         return data, 201
+
+
+class Projects(Resource):
+    def get(self):
+        """
+        Get a projects by user_id
+        """
+        if not request.args["user_id"]:
+            return {'error': 'no user_id provided'}, 404
+        projects = ProjectsModel.get_projects_by_user_id(
+            request.args["user_id"])
+        if not projects:
+            return {'error': 'projects not found'}, 404
+
+        ser_project = projects_schema.dump(projects)
+        return ser_project, 200

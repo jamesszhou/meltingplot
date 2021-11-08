@@ -1,4 +1,4 @@
-from .resources.project import Project
+from .resources.project import Project, Projects
 from .resources.graph import Graph
 import os
 from flask_restful import Api
@@ -17,3 +17,4 @@ api = Api(app)
 
 api.add_resource(Graph, '/api/graph/')
 api.add_resource(Project, '/api/project/')
+api.add_resource(Projects, '/api/projects/')

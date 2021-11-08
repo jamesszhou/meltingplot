@@ -12,8 +12,11 @@ import numpy as np
 class Graph(Resource):
     def get(self):
         code = generate_code(request.args["config"])
+        if code is None:
+            return {"error": "could not parse json of request"}, 400
         exec(code)
         buf = io.BytesIO()
         plt.savefig(buf, format='png')
+        plt.close()
         buf.seek(0)
         return send_file(buf, mimetype='image/png')

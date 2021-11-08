@@ -12,7 +12,7 @@ class ProjectsModel(db.Model):
     __tablename__ = 'projects'
 
     project_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.String(128), nullable=False)
+    user_id = db.Column(db.Integer, nullable=False)
     title = db.Column(db.String(128), nullable=False)
     description = db.Column(db.String(128), nullable=False)
     config = db.Column(JSON, nullable=False)
@@ -43,6 +43,10 @@ class ProjectsModel(db.Model):
     @staticmethod
     def get_project(project_id):
         return ProjectsModel.query.filter_by(project_id=project_id).first()
+
+    @staticmethod
+    def get_projects_by_user_id(user_id):
+        return ProjectsModel.query.filter_by(user_id=user_id).all()
 
     @staticmethod
     def delete_project(project_id):
