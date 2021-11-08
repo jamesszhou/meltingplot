@@ -1,83 +1,44 @@
 import React from "react";
 import ProjectPageHeader from "../Headers/ProjectPageHeader.js";
+import GraphType from "./GraphType.js";
+import GraphColor from "./GraphColor.js";
+import AxesLabels from "./AxesLabels.js";
+import Legend from "./Legend.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// reactstrap components
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Input,
-  InputGroupText,
-  Container
-} from "reactstrap";
-
-function IndexNavbar() {
-    const [isOpen, setIsOpen] = React.useState(false);
+function ProjectSpecs() {
 
     const [graphType, setGraphType] = React.useState("None selected");
-    
+    const [graphColor, setGraphColor] = React.useState("Blue");
     const [title, setTitle] = React.useState('Project title');
-    
     const [description, setDescription] = React.useState('');
-
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen);
-    };
-
-    const updateGraphType = (action) => {
-        setGraphType(action);
-    }
+    const [xLabel, setXLabel] = React.useState(false);
+    const [yLabel, setYLabel] = React.useState(false);
+    const [legend, setLegend] = React.useState(false);
 
     return (
         <>
-            <ProjectPageHeader title={title} 
-                            setTitle={setTitle} 
-                            description={description} 
-                            setDescription={setDescription} 
+            <ProjectPageHeader  title={title} 
+                                setTitle={setTitle} 
+                                description={description} 
+                                setDescription={setDescription} 
             />
-            <div>
-                <br />
-                <script type= "text/javascript">
-                    setGraphType("None selected");
-                </script>
-                <Container>
-                    <Dropdown toggle={toggleDropdown} isOpen={isOpen}>
-                        <DropdownToggle caret>
-                            Graph Type: {graphType}
-                        </DropdownToggle>
-                        <DropdownMenu container="body">
-                            <DropdownItem onClick={() => updateGraphType("Bar Graph")}>
-                                Bar Graph
-                            </DropdownItem>
-                            <DropdownItem onClick={() => updateGraphType("Line Graph")}>
-                                Line Graph
-                            </DropdownItem>
-                            <DropdownItem onClick={() => updateGraphType("Scatterplot")}>
-                                Scatterplot
-                            </DropdownItem>
-                            <DropdownItem onClick={() => updateGraphType("Boxplot")}>
-                                Boxplot
-                            </DropdownItem>
-                            <DropdownItem onClick={() => updateGraphType("Histogram")}>
-                                Histogram
-                            </DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                </Container>
-            </div>
-            <div>
-                <Container>
-                    <InputGroupText> X Label </InputGroupText>
-                    <Input placeholder="input data here" />
-                    <br />
-                    <InputGroupText> Y Label </InputGroupText>
-                    <Input placeholder="input data here" />
-                </Container>
-            </div>
+            <GraphType  graphType={graphType}
+                        setGraphType={setGraphType}
+            />
+            <GraphColor graphColor={graphColor}
+                        setGraphColor={setGraphColor}
+            />
+            <AxesLabels xLabel={xLabel}
+                        setXLabel={setXLabel}
+                        yLabel={yLabel}
+                        setYLabel={setYLabel}
+            />
+            <Legend legend={legend}
+                    setLegend={setLegend}
+            />
         </>
     );
 }
 
-export default IndexNavbar;
+export default ProjectSpecs;
