@@ -1,12 +1,14 @@
 import React from "react";
 
 // core components
-import GraphInputs from "../components/Input/GraphInputs.js";
+import ProjectSpecs from "../components/Content/ProjectSpecs.js";
+import PageFooter from "../components/Footers/PageFooter.js";
 
 function LandingPage() {
   return (
     <>
-      <GraphInputs/> 
+      <ProjectSpecs/>
+      <PageFooter/>
     </>
   );
 }

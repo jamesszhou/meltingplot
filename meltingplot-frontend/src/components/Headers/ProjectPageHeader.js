@@ -2,22 +2,21 @@ import React from "react";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
-  Button,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Nav,
-  NavbarBrand,
-  Navbar,
-  NavItem,
+    Button,
+    Container,
+    Form,
+    FormGroup,
+    Input,
+    Label,
+    Modal,
+    ModalBody,
+    ModalFooter,
+    ModalHeader,
+    Nav,
+    NavbarBrand,
+    Navbar,
+    NavItem,
 } from "reactstrap";
-
 
 function ProjectPageHeader(props) {
   
@@ -83,7 +82,7 @@ function ProjectPageHeader(props) {
         </Navbar>
         <Navbar>
             <Container>
-                <div className="w-100">
+                <div className="w-50">
                     <Form>
                         <FormGroup>
                             <Label>
