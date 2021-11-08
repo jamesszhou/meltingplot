@@ -1,28 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
-// nodejs library that concatenates strings
-import classnames from "classnames";
-import 'bootstrap/dist/css/bootstrap.min.css';
 
-// reactstrap components
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Button,
   Container,
+  Form,
+  FormGroup,
   Input,
+  Label,
   Modal,
   ModalBody,
   ModalFooter,
   ModalHeader,
+  Nav,
   NavbarBrand,
   Navbar,
   NavItem,
-  NavLink,
-  Nav,
 } from "reactstrap";
-//import { console } from "console";
 
-function IndexNavbar() {
-  const [projectTitle, setProjectTitle] = React.useState("Title of Project Bitch");
+
+function ProjectPageHeader(props) {
+  
   const [titleModal, setTitleModal] = React.useState(false);
   const [titleInput, setTitleInput] = React.useState('');
 
@@ -32,47 +30,76 @@ function IndexNavbar() {
 
   const updateTitle = () => {
     setTitleModal(false);
-    setProjectTitle(titleInput);
+    props.setTitle(titleInput);
     setTitleInput('');
   };
 
   return (
-    <Navbar>
-      <Container>
-        <NavbarBrand data-placement="bottom" title="Title">
-            { projectTitle }
-        </NavbarBrand>
-        <Button onClick={toggleTitleModal}>
-            Save Project
-        </Button>
-        <Button color="primary">
-            + Upload CSV
-        </Button>
-        <Modal isOpen={titleModal} toggle={toggleTitleModal}>
-            <ModalHeader>
-                Edit Project Title
-            </ModalHeader>
-            <ModalBody>
-                <Input
-                    value={titleInput} 
-                    onInput={e => setTitleInput(e.target.value)} />
-            </ModalBody>
-            <ModalFooter>
-            <Button
-                color="primary"
-                onClick={updateTitle}
-            >
-                Update
-            </Button>
-            <Button onClick={toggleTitleModal}>
-                Cancel
-            </Button>
-            </ModalFooter>
-        </Modal>
-        
-      </Container>
-    </Navbar>
+    <>
+        <Navbar>
+          <Container>
+            <Nav>
+                <NavbarBrand data-placement="bottom" title="Title">
+                    { props.title }
+                </NavbarBrand>
+                <Button color="light" onClick={toggleTitleModal}>
+                    Edit Title
+                </Button>
+            </Nav>
+            <Nav>
+                <NavItem>
+                    <Button>
+                        Save Project
+                    </Button>
+                </NavItem>
+                <NavItem>
+                    <Button color="primary">
+                        + Upload CSV
+                    </Button>
+                </NavItem>
+            </Nav>
+            <Modal isOpen={titleModal} toggle={toggleTitleModal}>
+                <ModalHeader>
+                    Edit Project Title
+                </ModalHeader>
+                <ModalBody>
+                    <Input
+                        value={titleInput} 
+                        onInput={e => setTitleInput(e.target.value)} />
+                </ModalBody>
+                <ModalFooter>
+                <Button
+                    color="primary"
+                    onClick={updateTitle}
+                >
+                    Update
+                </Button>
+                <Button onClick={toggleTitleModal}>
+                    Cancel
+                </Button>
+                </ModalFooter>
+            </Modal>
+          </Container>
+        </Navbar>
+        <Navbar>
+            <Container>
+                <div className="w-100">
+                    <Form>
+                        <FormGroup>
+                            <Label>
+                                Description
+                            </Label>
+                            <Input 
+                                type="textarea" 
+                                value={props.description}
+                                onInput={e => props.setDescription(e.target.value)} />
+                        </FormGroup> 
+                    </Form>
+                </div>
+            </Container>
+        </Navbar>  
+    </>
   );
 }
 
-export default IndexNavbar;
+export default ProjectPageHeader;
