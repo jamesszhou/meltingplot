@@ -7,12 +7,10 @@ import {
     DropdownItem,
     DropdownMenu,
     DropdownToggle,
-    Input,
-    InputGroupText,
     Container
   } from "reactstrap";
 
-function GraphDetails(props) {
+function GraphType(props) {
   
     const [isOpen, setIsOpen] = React.useState(false);
 
@@ -27,7 +25,6 @@ function GraphDetails(props) {
     return (
         <>
             <div>
-            <br />
                 <script type= "text/javascript">
                     props.setGraphType("None selected");
                 </script>
@@ -56,17 +53,9 @@ function GraphDetails(props) {
                     </Dropdown>
                 </Container>
             </div>
-            <div>
-                <Container>
-                    <InputGroupText> X Label </InputGroupText>
-                    <Input placeholder="input name of X axis here" />
-                    <br />
-                    <InputGroupText> Y Label </InputGroupText>
-                    <Input placeholder="input name of Y axis here" />
-                </Container>
-            </div>
+            <br/>
         </>
     );
 }
 
-export default GraphDetails;
+export default GraphType;
