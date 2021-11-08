@@ -15,14 +15,14 @@ import {
 function IndexNavbar() {
     const [isOpen, setIsOpen] = React.useState(false);
 
-    const [lastClicked, setLastClicked] = React.useState(false);
+    const [graphType, setGraphType] = React.useState("None selected");
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
-    const updateLastClicked = (action) => {
-        setLastClicked(action);
+    const updateGraphType = (action) => {
+        setGraphType(action);
     }
 
     return (
@@ -34,31 +34,37 @@ function IndexNavbar() {
             }}
         >
         <br />
+        <script type= "text/javascript">
+            setGraphType("None selected");
+        </script>
         <Dropdown toggle={toggleDropdown} isOpen={isOpen}>
         <DropdownToggle caret>
-            Currently Selected: {lastClicked}
+            Graph Type: {graphType}
         </DropdownToggle>
         <DropdownMenu container="body">
-            <DropdownItem onClick={() => updateLastClicked(2)}>
+            <DropdownItem onClick={() => updateGraphType("Bar Graph")}>
                 Bar Graph
             </DropdownItem>
-            <DropdownItem onClick={() => updateLastClicked(1)}>
+            <DropdownItem onClick={() => updateGraphType("Line Graph")}>
+                Line Graph
+            </DropdownItem>
+            <DropdownItem onClick={() => updateGraphType("Scatterplot")}>
                 Scatterplot
             </DropdownItem>
-            <DropdownItem onClick={() => updateLastClicked(3)}>
+            <DropdownItem onClick={() => updateGraphType("Boxplot")}>
                 Boxplot
             </DropdownItem>
-            <DropdownItem onClick={() => updateLastClicked(3)}>
+            <DropdownItem onClick={() => updateGraphType("Histogram")}>
                 Histogram
             </DropdownItem>
         </DropdownMenu>
         </Dropdown>
         </div>
         <div>
-            <InputGroupText> Line X Data </InputGroupText>
+            <InputGroupText> X Label </InputGroupText>
             <Input placeholder="input data here" />
             <br />
-            <InputGroupText> Line Y Data </InputGroupText>
+            <InputGroupText> Y Label </InputGroupText>
             <Input placeholder="input data here" />
         </div>
         </>
