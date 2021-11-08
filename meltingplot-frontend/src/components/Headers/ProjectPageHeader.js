@@ -22,16 +22,16 @@ import {
 function ProjectPageHeader(props) {
   
   const [titleModal, setTitleModal] = React.useState(false);
-  const [titleInput, setTitleInput] = React.useState('');
+  const [titleInput, setTitleInput] = React.useState(props.title);
 
   const toggleTitleModal = () => {
+    setTitleInput(props.title);
     setTitleModal(!titleModal);
   };
 
   const updateTitle = () => {
     setTitleModal(false);
     props.setTitle(titleInput);
-    setTitleInput('');
   };
 
   return (

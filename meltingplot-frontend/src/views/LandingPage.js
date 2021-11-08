@@ -7,8 +7,8 @@ import PageFooter from "../components/Footers/PageFooter.js";
 
 function LandingPage() {
 
-  const [title, setTitle] = React.useState("Project title");
-  const [description, setDescription] = React.useState("");
+  const [title, setTitle] = React.useState('Project title');
+  const [description, setDescription] = React.useState('');
 
   return (
     <>
