@@ -83,11 +83,14 @@ function ProjectPageHeader(props) {
         </Navbar>
         <Navbar>
             <Container>
-                <div className="w-100">
+                <div className="w-50">
                     <Form>
                         <FormGroup>
-                            <Label>
-                                Description
+                            <Label hidden={props.description.length <= 120}>
+                                WARNING: Too many characters.
+                            </Label>
+                            <Label hidden={props.description.length > 120}>
+                                Description ({Math.max(0, 120-props.description.length)} characters left).
                             </Label>
                             <Input 
                                 type="textarea" 
