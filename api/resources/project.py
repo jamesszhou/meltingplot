@@ -1,12 +1,11 @@
 import os
 import psycopg2
 from flask import request, jsonify
-from flask_restful import Resource, reqparse
+from flask_restful import Resource
 from api.models.projects_model import ProjectsModel, ProjectsSchema
 
 DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-# conn = psycopg2.connect(DATABASE_URL)
 cur = conn.cursor()
 
 project_schema = ProjectsSchema()

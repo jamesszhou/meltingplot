@@ -1,12 +1,9 @@
-
-import os
 import io
-import subprocess
 from flask_restful import Resource
-from flask import send_file, after_this_request, request
-from api.common.generate_code import generate_code
+from flask import send_file, request
 import matplotlib.pyplot as plt
 import numpy as np
+from api.common.generate_code import generate_code
 
 
 class Graph(Resource):

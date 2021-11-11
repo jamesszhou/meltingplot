@@ -1,6 +1,5 @@
 from api.database import db
 from marshmallow import fields, Schema
-from api.models.ProjectsModel import ProjectsModel
 
 
 class UsersModel(db.Model):
