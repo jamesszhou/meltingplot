@@ -42,14 +42,6 @@ function LandingPage() {
       <Legend legend={legend}
               setLegend={setLegend}
       />
-      <GraphDisplay graphType={graphType}
-                    graphColor={graphColor}
-                    title={title}
-                    description={description}
-                    xLabel={xLabel}
-                    yLabel={yLabel}
-                    legend={legend} 
-      />
       <PythonDisplay config={
           {
             "Lines": [
@@ -70,7 +62,7 @@ function LandingPage() {
           }
         }
       />
-      {/* <GraphDisplay config={
+      <GraphDisplay config={
           {
             "Lines": [
               {
@@ -89,7 +81,7 @@ function LandingPage() {
             }
           }
         }
-      /> */}
+      />
       <PageFooter/>
     </>
   );
