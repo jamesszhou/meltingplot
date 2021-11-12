@@ -1,0 +1,17 @@
+language: python
+
+python:
+  - 3.8
+
+install:
+  - pip install -r requirements.txt
+  - pip install codecov
+
+script:
+  - coverage erase
+  - coverage run -m pytest --cov=api api/tests/
+  - coverage html
+  - pylint api
+
+after_success:
+  - codecov

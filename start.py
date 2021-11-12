@@ -3,7 +3,7 @@ from api.resources.graph import Graph
 import os
 from flask_restful import Api
 from api.database import db
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 
 
 app = Flask(__name__,
@@ -15,9 +15,19 @@ db.init_app(app)
 
 api = Api(app)
 
+
 @app.route("/")
 def react():
     return render_template('index.html')
+
+
+@app.route('/docs', defaults={'filename': 'index.html'})
+def documentation(filename):
+    return send_from_directory(
+        "_build/singlehtml",
+        filename
+    )
+
 
 api.add_resource(Graph, '/api/graph/')
 api.add_resource(Project, '/api/project/')

@@ -28,30 +28,48 @@ class ProjectsModel(db.Model):
         self.config = data.get('config')
 
     def save(self):
-        db.session.add(self)
-        db.session.commit()
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except:
+            None
 
     def update(self, data):
-        for key, item in data.items():
-            setattr(self, key, item)
-        db.session.commit()
+        try:
+            for key, item in data.items():
+                setattr(self, key, item)
+            db.session.commit()
+        except:
+            pass
 
     def remove(self):
-        db.session.delete(self)
-        db.session.commit()
+        try:
+            db.session.delete(self)
+            db.session.commit()
+        except:
+            pass
 
     @staticmethod
     def get_project(project_id):
-        return ProjectsModel.query.filter_by(project_id=project_id).first()
+        try:
+            return ProjectsModel.query.filter_by(project_id=project_id).first()
+        except:
+            return None
 
     @staticmethod
     def get_projects_by_user_id(user_id):
-        return ProjectsModel.query.filter_by(user_id=user_id).all()
+        try:
+            return ProjectsModel.query.filter_by(user_id=user_id).all()
+        except: 
+            None
 
     @staticmethod
     def delete_project(project_id):
-        ProjectsModel.query.filter_by(project_id=project_id).delete()
-        db.session.commit()
+        try:
+            ProjectsModel.query.filter_by(project_id=project_id).delete()
+            db.session.commit()
+        except:
+            pass
 
 
 class ProjectsSchema(Schema):
