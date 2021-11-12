@@ -2,8 +2,9 @@ import React from "react";
 
 import loadingCircle from "../../assets/img/LoadingCircle.gif";
 
-class GraphComponent extends React.Component {
+class GraphDisplay extends React.Component {
     constructor(props) {
+        console.log(props);
         super(props);
         this.state = {
             isLoaded: false,
@@ -70,13 +71,13 @@ class GraphComponent extends React.Component {
                 if (!isLoaded) {
                     return (
                         <div>
-                            <img src={loadingCircle}></img>
+                            <img src={loadingCircle} alt=""></img>
                         </div>
                     );
                 } else {
                     return (
                         <div>
-                            <img src={graph}></img>
+                            <img src={graph} alt=""></img>
                             <button onClick={this.generateGraph}>Generate</button>
                         </div>
                     );
@@ -86,4 +87,4 @@ class GraphComponent extends React.Component {
     }
 }
 
-export default GraphComponent;
+export default GraphDisplay;

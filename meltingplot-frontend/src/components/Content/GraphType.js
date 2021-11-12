@@ -34,20 +34,14 @@ function GraphType(props) {
                             Graph Type: {props.graphType}
                         </DropdownToggle>
                         <DropdownMenu container="body">
-                            <DropdownItem onClick={() => updateGraphType("Bar Graph")}>
+                            <DropdownItem onClick={() => updateGraphType("Bar")}>
                                 Bar Graph
                             </DropdownItem>
-                            <DropdownItem onClick={() => updateGraphType("Line Graph")}>
+                            <DropdownItem onClick={() => updateGraphType("Line")}>
                                 Line Graph
                             </DropdownItem>
-                            <DropdownItem onClick={() => updateGraphType("Scatterplot")}>
+                            <DropdownItem onClick={() => updateGraphType("Scatter")}>
                                 Scatterplot
-                            </DropdownItem>
-                            <DropdownItem onClick={() => updateGraphType("Boxplot")}>
-                                Boxplot
-                            </DropdownItem>
-                            <DropdownItem onClick={() => updateGraphType("Histogram")}>
-                                Histogram
                             </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
