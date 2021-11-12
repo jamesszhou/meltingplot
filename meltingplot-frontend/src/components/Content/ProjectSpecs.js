@@ -15,7 +15,7 @@ function ProjectSpecs() {
     const [xLabel, setXLabel] = React.useState(false);
     const [yLabel, setYLabel] = React.useState(false);
     const [legend, setLegend] = React.useState(false);
-
+    
     return (
         <>
             <ProjectPageHeader  title={title} 
