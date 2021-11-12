@@ -1,7 +1,6 @@
-from api.resources import graph
+from api.resources import project
 from unittest.mock import MagicMock
 import json
-import pytest
 from flask import send_file, request, Flask
 import numpy as np
 
@@ -33,6 +32,7 @@ json_config = json.dumps({
         }
     })
 
+
 def test_proper_graph():
     #try:
     with app.test_request_context("/api/resources/graph/") as req:
@@ -42,7 +42,9 @@ def test_proper_graph():
 
 def test_improper_graph():
     #try:
-    with app.test_request_context("/api/resources/graph/") as req:
+    with app.test_request_context("/api/resources/project/") as req:
+        pr = project.Projec()
         req.request.args = {"config": ""}
+
         res = graph.Graph().get()
         assert res[0]["error"] is not None and res[1] == 400

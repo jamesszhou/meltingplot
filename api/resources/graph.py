@@ -8,7 +8,11 @@ from api.common.generate_code import generate_code
 
 class Graph(Resource):
     def get(self):
-        code = generate_code(request.args["config"])
+        try:
+            code = generate_code(request.args["config"])
+        except Exception as e:
+            raise e
+            return None
         if code is None:
             return {"error": "could not parse json of request"}, 400
         exec(code)

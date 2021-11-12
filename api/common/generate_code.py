@@ -56,7 +56,7 @@ def generate_code(request):
     """
     try:
         request = json.loads(request)
-    except ValueError:
+    except:
         return None
     code = """import matplotlib
 import matplotlib.pyplot as plt
