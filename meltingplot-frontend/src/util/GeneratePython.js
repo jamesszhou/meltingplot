@@ -41,11 +41,10 @@ const attributes = (attribute, value) => {
 
 
 function generateCode(request) {
-    const requestObj = JSON.parse(request)
+    const requestObj=  request
     let code = "import matplotlib\n" +
         "import matplotlib.pyplot as plt\n" +
         "import numpy as np\n" +
-        "matplotlib.use('Agg')\n" +
         "t = np.arange(0.0, 2.0, 0.01)\n" +
         "s = np.sin(2*np.pi*t)";
 
@@ -61,7 +60,6 @@ function generateCode(request) {
         code += graphTypes(line["GraphType"], innerCode);
     });
     for (const [key, value] of Object.entries(requestObj["Attributes"])) {
-        console.log(key + " " + value);
         code += attributes(key, value);
     }
 

@@ -9,6 +9,7 @@ import AxesLabels from "../components/Content/AxesLabels.js";
 import Legend from "../components/Content/Legend.js";
 import GraphDisplay from "../components/Content/GraphDisplay.js";
 import PageFooter from "../components/Footers/PageFooter.js";
+import PythonDisplay from "../components/Content/PythonDisplay.js";
 
 function LandingPage() {
 
@@ -47,7 +48,27 @@ function LandingPage() {
                     description={description}
                     xLabel={xLabel}
                     yLabel={yLabel}
-                    legend={legend}
+                    legend={legend} 
+      />
+      <PythonDisplay config={
+          {
+            "Lines": [
+              {
+                "GraphType": graphType,
+                "GraphData": {"Color": graphColor,
+                              "XData": "np.arange(0.0,2.0,0.01)",
+                              "YData": "np.sin(2*np.pi*t)",
+                              "Label": title}
+              },
+            ],
+            "Attributes": {
+              "Title": title,
+              "XLabel": xLabel,
+              "YLabel": yLabel,
+              "Legend": legend
+            }
+          }
+        }
       />
       {/* <GraphDisplay config={
           {
