@@ -12,8 +12,6 @@ import numpy as np
 class Graph(Resource):
     def get(self):
         code = generate_code(request.args["config"])
-        print("This is none")
-        print(code)
         if code is None:
             return {"error": "could not parse json of request"}, 400
         exec(code)
