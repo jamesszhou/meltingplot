@@ -44,7 +44,7 @@ def test_improper_get():
             res = pr.get()
             assert res[0]["error"] is not None and res[1] == 404
 
-def test_get_no_project():
+def test_improper_get2():
     with patch.dict(os.environ, {"DATABASE_URL": ""}):
         from api.resources import project
         with app.test_request_context("/api/resources/project/") as req:
@@ -62,14 +62,14 @@ def test_improper_delete():
             res = pr.delete()
             assert res[0]["error"] is not None and res[1] == 404
 
-def t_proper_delete():
+def test_proper_delete():
     with patch.dict(os.environ, {"DATABASE_URL": ""}):
         from api.resources import project
         with app.test_request_context("/api/resources/project/") as req:
             pr = project.Project()
             req.request.args = {"project_id": 1}
             res = pr.delete()
-            assert res[0]["message"] is not null and res[1] == 204
+            assert res[0]["message"] is not None and res[1] == 204
 
 def test_improper_put():
     with patch.dict(os.environ, {"DATABASE_URL": ""}):
