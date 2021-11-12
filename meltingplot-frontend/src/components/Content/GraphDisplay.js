@@ -4,7 +4,6 @@ import loadingCircle from "../../assets/img/LoadingCircle.gif";
 
 class GraphDisplay extends React.Component {
     constructor(props) {
-        console.log(props);
         super(props);
         this.state = {
             isLoaded: false,
@@ -23,7 +22,8 @@ class GraphDisplay extends React.Component {
     generateGraph() {
         // Make fetch request
         fetch(this.url, {
-            body: this.config,
+            method: "POST",
+            body: this.state.config,
             headers: {
                 "Content-Type": "application/json"
             }

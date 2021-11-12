@@ -41,15 +41,15 @@ function LandingPage() {
       <Legend legend={legend}
               setLegend={setLegend}
       />
-      <GraphDisplay graphType={graphType}
+      {/* <GraphDisplay graphType={graphType}
                     graphColor={graphColor}
                     title={title}
                     description={description}
                     xLabel={xLabel}
                     yLabel={yLabel}
                     legend={legend}
-      />
-      {/* <GraphDisplay config={
+      /> */}
+      <GraphDisplay config={
           {
             "Lines": [
               {
@@ -68,7 +68,7 @@ function LandingPage() {
             }
           }
         }
-      /> */}
+      />
       <PageFooter/>
     </>
   );
