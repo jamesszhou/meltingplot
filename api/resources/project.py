@@ -5,8 +5,9 @@ from flask_restful import Resource
 from api.models.projects_model import ProjectsModel, ProjectsSchema
 
 DATABASE_URL = os.environ['DATABASE_URL']
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-cur = conn.cursor()
+if(DATABASE_URL is not None and DATABASE_URL != ""):
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cur = conn.cursor()
 
 project_schema = ProjectsSchema()
 projects_schema = ProjectsSchema(many=True)
@@ -38,8 +39,8 @@ class Project(Resource):
             data = project_schema.load(req_data, partial=(
                 "description", "title", "config"))
         except Exception as error:
-            return {'error': error.message}, 400
-
+            return {'error': error}, 400
+        
         project = ProjectsModel.get_project(request.args["project_id"])
         project.update(data)
         ser_project = project_schema.dump(project)
@@ -53,7 +54,7 @@ class Project(Resource):
         try:
             data = project_schema.load(req_data, partial=("project_id",))
         except Exception as error:
-            return {'error': error.message}, 400
+            return {'error': error}, 400
         project = ProjectsModel(data)
         project.save()
         data = project_schema.dump(project)

@@ -10,8 +10,7 @@ class Graph(Resource):
     def get(self):
         try:
             code = generate_code(request.args["config"])
-        except Exception as e:
-            raise e
+        except:
             return None
         if code is None:
             return {"error": "could not parse json of request"}, 400
