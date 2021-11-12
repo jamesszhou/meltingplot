@@ -91,7 +91,6 @@ function ProjectPageHeader(props) {
                             </Label>
                             <Input 
                                 type="textarea" 
-                                value={props.description}
                                 invalid={props.description.length > 120}
                                 onInput={e => props.setDescription(e.target.value)} />
                             <FormFeedback hidden={props.description.length <= 120}>
