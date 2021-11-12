@@ -6,6 +6,11 @@ import AxesLabels from "./AxesLabels.js";
 import Legend from "./Legend.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+/**
+   * Renders a ProjectSpecs component containing graph config user inputs
+   *
+   * @return A rendered ProjectSpecs
+   */
 function ProjectSpecs() {
 
     const [graphType, setGraphType] = React.useState("None selected");
