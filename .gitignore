@@ -1,6 +1,7 @@
 /api/__pycache__/
 /api/common/__pycache__/
 /api/resources/__pycache__/
+/api/model/__pycache__/
 
 
 .DS_Store
