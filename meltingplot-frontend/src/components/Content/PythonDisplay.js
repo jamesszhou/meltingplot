@@ -6,7 +6,6 @@ import '../../css/pythondisplay.css'
 import { generateCode } from "../../util/GeneratePython";
 
 function PythonDisplay(props) {
-    console.log(generateCode(props.config))
     return (
             <div className="display-linebreak">
                 {generateCode(props.config)}

@@ -10,6 +10,7 @@ import Legend from "../components/Content/Legend.js";
 import GraphDisplay from "../components/Content/GraphDisplay.js";
 import PageFooter from "../components/Footers/PageFooter.js";
 import PythonDisplay from "../components/Content/PythonDisplay.js";
+import {Row, Col} from "reactstrap"
 
 function LandingPage() {
 
@@ -42,7 +43,11 @@ function LandingPage() {
       <Legend legend={legend}
               setLegend={setLegend}
       />
-      <PythonDisplay config={
+      <Row>
+      <Col/>
+
+        <Col>
+        <PythonDisplay config={
           {
             "Lines": [
               {
@@ -62,6 +67,8 @@ function LandingPage() {
           }
         }
       />
+        </Col>
+      <Col>
       <GraphDisplay config={
           {
             "Lines": [
@@ -82,6 +89,11 @@ function LandingPage() {
           }
         }
       />
+      </Col>
+      <Col/>
+      </Row>
+      
+      
       <PageFooter/>
     </>
   );
