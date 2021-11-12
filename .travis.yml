@@ -9,7 +9,6 @@ install:
 
 script:
   - pytest
-  - pylint api
 
 after_success:
   - codecov
