@@ -33,6 +33,7 @@ json_config = json.dumps({
         }
     })
 
+app = Flask(__name__)
 def test_proper_graph():
     #try:
     with app.test_request_context("/api/resources/graph/") as req:
