@@ -12,7 +12,7 @@ function GraphDisplay(props) {
     const generateGraph = () => {
         console.log(props.config)
         // Make fetch request
-        fetch(`http://localhost:5000/api/graph?config=${JSON.stringify(props.config)}`, {
+        fetch(`${window.location.origin}/api/graph?config=${JSON.stringify(props.config)}`, {
             method: "GET"
         })
         .then(response => response.blob())
