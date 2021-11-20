@@ -4,6 +4,15 @@ from flask import send_file, request
 import matplotlib.pyplot as plt
 import numpy as np
 from api.common.generate_code import generate_code
+import boto3
+
+s3 = boto3.client('s3',
+                  aws_access_key_id=os.environ.get(
+                      'AWS_ACCESS'),
+                  aws_secret_access_key=os.environ.get(
+                      'AWS_SECRET')
+                  )
+BUCKET_NAME = 'meltingplotcsv'
 
 
 class Graph(Resource):
