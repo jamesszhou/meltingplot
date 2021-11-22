@@ -11,33 +11,31 @@ import {
 
 function AxesLabels(props) {
 
-    const [xLabel, setXLabel] = React.useState(false);
-    const [yLabel, setYLabel] = React.useState(false);
-
-    const updateXLabel = () => {
-        props.setXLabel(xLabel);
+    const updateXLabel = (val) => {
+        props.setXLabel(val);
     }
 
-    const updateYLabel = () => {
-        props.setYLabel(yLabel);
+    const updateYLabel = (val) => {
+        props.setYLabel(val);
     }
 
     return (
         <Container>
+            <div>
+                X-axis Label:
+            </div>
             <InputGroup>
-                <Input  onInput={e => setXLabel(e.target.value)}
+                
+                <Input  onInput={e => updateXLabel(e.target.value)}
                         placeholder="input name of X axis here"/>
-                <Button onClick={updateXLabel}>
-                    Enter
-                </Button>
             </InputGroup>
             <br />
+            <div>
+                Y-axis Label:
+            </div>
             <InputGroup>
-                <Input  onInput={e => setYLabel(e.target.value)}
+                <Input  onInput={e => updateYLabel(e.target.value)}
                         placeholder="input name of Y axis here"/>
-                <Button onClick={updateYLabel}>
-                    Enter
-                </Button>
             </InputGroup>
             <br />
         </Container>

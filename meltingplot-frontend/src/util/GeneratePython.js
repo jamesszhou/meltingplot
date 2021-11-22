@@ -60,7 +60,9 @@ function generateCode(request) {
         code += graphTypes(line["GraphType"], innerCode);
     });
     for (const [key, value] of Object.entries(requestObj["Attributes"])) {
-        code += attributes(key, value);
+        if (value){
+            code += attributes(key, value);
+        }
     }
 
     return code;
