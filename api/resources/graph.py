@@ -22,14 +22,7 @@ BUCKET_NAME = 'meltingplotcsv'
 class Graph(Resource):
     def get(self):
         code = ""
-        if not request.args["project_id"]:
-            try:
-                code = generate_code(request.args["config"], False)
-            except:
-                return None
-            if code is None:
-                return {"error": "could not parse json of request"}, 400
-        else:
+        if "project_id" in request.args:
             try:
                 obj = s3.Object(BUCKET_NAME, '{}.csv'.format(
                     request.args["project_id"]))
@@ -43,7 +36,17 @@ class Graph(Resource):
                 value = obj.get()['Body'].read().decode('utf-8')
                 df = pd.read_csv(StringIO(value), sep=",")
                 code = generate_code(request.args["config"], True)
+        else:
+            try:
+                code = generate_code(request.args["config"], False)
+            except:
+                return None
+            if code is None:
+                return {"error": "could not parse json of request"}, 400
+        print("hello")
+        print(code)
         exec(code)
+
         buf = io.BytesIO()
         plt.savefig(buf, format='png')
         plt.close()

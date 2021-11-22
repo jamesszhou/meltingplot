@@ -44,9 +44,7 @@ function generateCode(request) {
     const requestObj = request;
     let code = "import matplotlib\n" +
         "import matplotlib.pyplot as plt\n" +
-        "import numpy as np\n" +
-        "t = np.arange(0.0, 2.0, 0.01)\n" +
-        "s = np.sin(2*np.pi*t)";
+        "import numpy as np";
 
     requestObj["Lines"].forEach(line => {
         const xData = line["GraphData"]["XData"];
@@ -60,7 +58,9 @@ function generateCode(request) {
         code += graphTypes(line["GraphType"], innerCode);
     });
     for (const [key, value] of Object.entries(requestObj["Attributes"])) {
-        code += attributes(key, value);
+        if (value){
+            code += attributes(key, value);
+        }
     }
 
     return code;
