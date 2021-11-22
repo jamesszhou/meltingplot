@@ -33,19 +33,21 @@ function FileUploadModal(props) {
         let formData = new FormData();
         formData.append("file", e.target.elements.fileInput.files[0]);
 
-        fetch(`${window.location.origin}/api/project`, formData, {
+        // TODO: Change this to project_id is correct
+        fetch(`${window.location.origin}/api/csv/?project_id=1`, {
             method: "POST",
-            headers: {
-                "Content-Type": "multipart/form-data",
-            }
-        })
+            body: formData
+          })
         .then(
             (response) => {
-                props.toggleFileModal();
-                console.log(response);
-            },      
-            (error) => {
-                alert(error);
+                if (response.ok){
+                    alert("Upload success")
+                    props.toggleFileModal();
+                }
+                else{
+                    alert("Could not upload csv");
+                }
+                
             }
         )
     }

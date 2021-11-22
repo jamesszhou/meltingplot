@@ -22,9 +22,9 @@ class CSV(Resource):
         if csv:
             filename = secure_filename(csv.filename)
             try:
-                s3.upload_file(
+                s3.upload_fileobj(
                     Bucket=BUCKET_NAME,
-                    Filename=filename,
+                    Fileobj=csv,
                     Key="{}.csv".format(request.args["project_id"])
                 )
             except ClientError as e:
