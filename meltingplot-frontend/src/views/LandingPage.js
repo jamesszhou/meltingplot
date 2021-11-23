@@ -131,15 +131,7 @@ function LandingPage() {
       <Col>
       <GraphDisplay config={
           {
-            "Lines": [
-              {
-                "GraphType": graphType,
-                "GraphData": {"Color": graphColor,
-                              "XData": "np.arange(0.0,2.0,0.01)",
-                              "YData": "np.sin(2*np.pi*t)",
-                              "Label": title}
-              },
-            ],
+            "Lines": inputList,
             "Attributes": {
               "Title": title,
               "XLabel": xLabel,

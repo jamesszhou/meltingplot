@@ -50,7 +50,7 @@ attributes = {
 }
 
 
-def generate_code(request):
+def generate_code(request, csv_present):
     """
 
     """
@@ -62,12 +62,14 @@ def generate_code(request):
 import matplotlib.pyplot as plt
 import numpy as np
 matplotlib.use('Agg')
-t = np.arange(0.0, 2.0, 0.01)
-s = np.sin(2*np.pi*t)
 """
     for line in request["Lines"]:
-        innercode = "{},{}".format(
-            line["GraphData"]["XData"], line["GraphData"]["YData"])
+        if csv_present:
+            innercode = "df[\'{}\'],df[\'{}\']".format(
+                line["GraphData"]["XData"], line["GraphData"]["YData"])
+        else:
+            innercode = "{},{}".format(
+                line["GraphData"]["XData"], line["GraphData"]["YData"])
         for spec, value in line["GraphData"].items():
             if graph_specs[spec]:
                 innercode += graph_specs[spec].format(value)

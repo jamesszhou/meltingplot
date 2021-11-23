@@ -1,5 +1,6 @@
 from api.resources.project import Project, Projects
 from api.resources.graph import Graph
+from api.resources.csv import CSV
 import os
 from flask_restful import Api
 from api.database import db
@@ -32,3 +33,4 @@ def documentation(filename):
 api.add_resource(Graph, '/api/graph/')
 api.add_resource(Project, '/api/project/')
 api.add_resource(Projects, '/api/projects/')
+api.add_resource(CSV, '/api/csv/')

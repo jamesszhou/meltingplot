@@ -40,7 +40,7 @@ class Project(Resource):
                 "description", "title", "config"))
         except Exception as error:
             return {'error': error}, 400
-        
+
         project = ProjectsModel.get_project(request.args["project_id"])
         project.update(data)
         ser_project = project_schema.dump(project)

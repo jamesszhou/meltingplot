@@ -41,20 +41,18 @@ const attributes = (attribute, value) => {
 
 
 function generateCode(request) {
-    const requestObj=  request
+    const requestObj = request;
     let code = "import matplotlib\n" +
         "import matplotlib.pyplot as plt\n" +
-        "import numpy as np\n" +
-        "t = np.arange(0.0, 2.0, 0.01)\n" +
-        "s = np.sin(2*np.pi*t)";
+        "import numpy as np";
 
     requestObj["Lines"].forEach(line => {
         const xData = line["GraphData"]["XData"];
         const yData = line["GraphData"]["YData"];
         let innerCode = `${xData},${yData}`;
         for (const [spec, value] of Object.entries(line["GraphData"])) {
-            if (graphSpecs[spec]) {
-                innerCode += graphSpecs[spec].format(value);
+            if (graphSpecs(spec, value) && graphSpecs(spec, value) !== "") {
+                innerCode += graphSpecs(spec, value);
             }
         }
         code += graphTypes(line["GraphType"], innerCode);
