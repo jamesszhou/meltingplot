@@ -20,7 +20,6 @@ function GraphDisplay(props) {
             }
             else{
                 response.json().then(text => { throw new Error(text.message) }).catch(error => {
-                    console.log(error.message)
                     setIsLoaded(true);
                     setError(error.message)
                   })
@@ -34,7 +33,6 @@ function GraphDisplay(props) {
             }, 
         ) 
         .catch(error => {
-            console.log(error.message)
             setIsLoaded(true);
             setError(error.message)
           })    

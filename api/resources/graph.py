@@ -37,15 +37,12 @@ class Graph(Resource):
                 df = pd.read_csv(StringIO(value), sep=",")
                 code = generate_code(request.args["config"], True)
         else:
-            print("called")
             try:
                 code = generate_code(request.args["config"], False)
             except:
                 return {"message": "could not generate python code"}, 400
             if code is None:
                 return {"message": "could not parse json of request"}, 400
-        print("hello")
-        print(code)
         try:
             exec(code)
         except Exception as e:
