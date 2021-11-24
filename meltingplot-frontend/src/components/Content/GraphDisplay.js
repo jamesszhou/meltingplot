@@ -12,19 +12,18 @@ function GraphDisplay(props) {
     const generateGraph = () => {
         // Make fetch request
         fetch(`${window.location.origin}/api/graph?config=${JSON.stringify(props.config)}`, {
-            method: "GET",
-            redirect: 'follow'
+            method: "GET"
         })
         .then((response) => {
             if (response.status == 200) {
-                console.log("status is lit")
                 return response.blob()
             }
             else{
-                console.log("bad status")
-                setIsLoaded(true);
-                setError(response.message);
-                return
+                response.json().then(text => { throw new Error(text.message) }).catch(error => {
+                    console.log(error.message)
+                    setIsLoaded(true);
+                    setError(error.message)
+                  })
             } 
         })
         .then(
@@ -33,15 +32,26 @@ function GraphDisplay(props) {
                 setIsLoaded(true);
                 setGraph(imageObjectURL);
             }, 
-        )     
+        ) 
+        .catch(error => {
+            console.log(error.message)
+            setIsLoaded(true);
+            setError(error.message)
+          })    
     }
     
         // Verify graph fetch has not encountered an error
-    if (error) {
+    if (error != null) {
         return (
+            <>
+            <div>
+                Click "Generate" to display your graph!
+                <button onClick={generateGraph}>Generate</button>
+            </div>
             <div>
                 Error: {error}
             </div>
+            </>
         );
     } else {
         // Verify that graph fetch has been called at least once

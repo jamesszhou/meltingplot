@@ -29,9 +29,6 @@ function LandingPage() {
   // handle input change
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
-    console.log(e.target)
-    console.log(name);
-    console.log(value);
     const list = [...inputList];
     list[index][name] = value;
     setInputList(list);
@@ -95,7 +92,7 @@ function LandingPage() {
             <Row>
             <GraphType graphType={x.GraphType}
                     setGraphType={e => handleInputChange(e,i)}/>
-              <GraphColor graphColor={graphColor}
+              <GraphColor graphColor={x.GraphData.Color}
                     setGraphColor={e => handleGraphData(e,i)}
               />
             </Row>
