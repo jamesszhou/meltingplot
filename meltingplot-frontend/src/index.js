@@ -11,7 +11,6 @@ ReactDOM.render(
   <HashRouter>
     <Switch>
       <Route path="/index" render={(props) => <LandingPage {...props} />} />
-      <Redirect to="/index" />
     </Switch>
   </HashRouter>,
   document.getElementById("root")

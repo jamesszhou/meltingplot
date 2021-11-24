@@ -19,7 +19,7 @@ function GraphColor(props) {
     };
 
     const updateGraphColor = (action) => {
-        props.setGraphColor(action);
+        props.setGraphColor({"target": {"name": "Color", "value": action}});
     }
 
     return (

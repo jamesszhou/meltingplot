@@ -19,7 +19,7 @@ function GraphType(props) {
     };
 
     const updateGraphType = (action) => {
-        props.setGraphType(action);
+        props.setGraphType({"target": {"name": "GraphType", "value": action}});
     }
 
     return (
@@ -31,7 +31,7 @@ function GraphType(props) {
                 <Container>
                     <Dropdown toggle={toggleDropdown} isOpen={isOpen}>
                         <DropdownToggle caret>
-                            Graph Type: {props.graphType}
+                            Graph/Line Type: {props.graphType}
                         </DropdownToggle>
                         <DropdownMenu container="body">
                             <DropdownItem onClick={() => updateGraphType("Bar")}>
