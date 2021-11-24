@@ -31,21 +31,27 @@ class Graph(Resource):
                     # no csv is present for the requested project_id, generate code as if no project_id is passed
                     code = generate_code(request.args["config"], False)
                 else:
-                    return {"error": "could not retrieve csv"}, 400
+                    return {"message": "could not retrieve csv"}, 400
             else:
                 value = obj.get()['Body'].read().decode('utf-8')
                 df = pd.read_csv(StringIO(value), sep=",")
                 code = generate_code(request.args["config"], True)
         else:
+            print("called")
             try:
                 code = generate_code(request.args["config"], False)
             except:
-                return None
+                return {"message": "could not generate python code"}, 400
             if code is None:
-                return {"error": "could not parse json of request"}, 400
+                return {"message": "could not parse json of request"}, 400
         print("hello")
         print(code)
-        exec(code)
+        try:
+            exec(code)
+        except Exception as e:
+            template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+            message = template.format(type(e).__name__, e.args)
+            return {"message": message}, 400
 
         buf = io.BytesIO()
         plt.savefig(buf, format='png')

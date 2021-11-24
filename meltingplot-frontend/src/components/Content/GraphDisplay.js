@@ -10,30 +10,37 @@ function GraphDisplay(props) {
     const [graph, setGraph] = React.useState(null);
     
     const generateGraph = () => {
-        console.log(props.config)
         // Make fetch request
         fetch(`${window.location.origin}/api/graph?config=${JSON.stringify(props.config)}`, {
-            method: "GET"
+            method: "GET",
+            redirect: 'follow'
         })
-        .then(response => response.blob())
+        .then((response) => {
+            if (response.status == 200) {
+                console.log("status is lit")
+                return response.blob()
+            }
+            else{
+                console.log("bad status")
+                setIsLoaded(true);
+                setError(response.message);
+                return
+            } 
+        })
         .then(
             (imageBlob) => {
                 const imageObjectURL = URL.createObjectURL(imageBlob)
                 setIsLoaded(true);
                 setGraph(imageObjectURL);
-            },      
-            (error) => {
-                setIsLoaded(true);
-                setError(error);
-            }
-        )
+            }, 
+        )     
     }
     
         // Verify graph fetch has not encountered an error
     if (error) {
         return (
             <div>
-                Error: {error.message}
+                Error: {error}
             </div>
         );
     } else {
