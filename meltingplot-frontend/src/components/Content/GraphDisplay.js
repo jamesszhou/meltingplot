@@ -13,7 +13,7 @@ function GraphDisplay(props) {
             method: "GET"
         })
         .then((response) => {
-            if (response.status == 200) {
+            if (response.status === 200) {
                 return response.blob()
             }
             else{

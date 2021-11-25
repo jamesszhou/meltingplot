@@ -8,16 +8,16 @@ import GraphColor from "../components/Content/GraphColor.js";
 import AxesLabels from "../components/Content/AxesLabels.js";
 import Legend from "../components/Content/Legend.js";
 import GraphDisplay from "../components/Content/GraphDisplay.js";
-import Line from "../components/Content/Line.js";
+// import Line from "../components/Content/Line.js";
 import PageFooter from "../components/Footers/PageFooter.js";
 import PythonDisplay from "../components/Content/PythonDisplay.js";
 import {Row, Col, Button, Input, Card, CardBody, CardTitle, Container} from "reactstrap"
 
+/* Main page alloweing user to create graph */
+function InteractivePage() {
 
-function LandingPage() {
-
-  const [graphType, setGraphType] = React.useState("None selected");
-  const [graphColor, setGraphColor] = React.useState("Blue");
+  // const [graphType, setGraphType] = React.useState("None selected");
+  // const [graphColor, setGraphColor] = React.useState("Blue");
   const [title, setTitle] = React.useState('Project title');
   const [description, setDescription] = React.useState('');
   const [xLabel, setXLabel] = React.useState(false);
@@ -182,4 +182,4 @@ function LandingPage() {
   );
 }
 
-export default LandingPage;
+export default InteractivePage;
