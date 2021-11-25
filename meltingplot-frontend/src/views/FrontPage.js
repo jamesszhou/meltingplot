@@ -8,9 +8,9 @@ import {
     Button
 } from "reactstrap";
 
-import background from '../assets/img/Samueli.jpeg';
+// import background from '../assets/img/Samueli.jpeg';
 import banner from '../assets/img/blackpotbluebackground.jpeg';
-import '../assets/css/FrontPage.css';
+import '../css/FrontPage.css';
 
 /* First page a user reaches, allows sign in */
 function FrontPage() {
