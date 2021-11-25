@@ -2,7 +2,6 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
-    Button,
     Card,
     CardBody,
     Container,
@@ -19,7 +18,7 @@ function ProjectsList(props) {
     const parseProjects = () => {
         let list = [];
 
-        if (props.projects.length == 0) {
+        if (props.projects.length === 0) {
             return list;
         }
 
