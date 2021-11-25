@@ -19,8 +19,6 @@ function ProjectsList(props) {
     const parseProjects = () => {
         let list = [];
 
-        console.log(props.projects.serialize());
-        
         if (props.projects.length == 0) {
             return list;
         }

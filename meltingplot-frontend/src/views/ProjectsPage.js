@@ -34,7 +34,7 @@ function ProjectsPage() {
             )
     }
 
-    const projectsJson = React.useState(getProjects);
+    const [projectsJson, setProjectsJson] = React.useState(getProjects);
 
     return (
         <>
