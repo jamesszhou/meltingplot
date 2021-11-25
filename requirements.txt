@@ -4,9 +4,12 @@ astroid==2.8.4
 attrs==21.2.0
 autopep8==1.6.0
 Babel==2.9.1
+boto3==1.20.8
+botocore==1.23.9
 certifi==2021.10.8
 charset-normalizer==2.0.7
 click==8.0.3
+codecov==2.1.12
 coverage==6.1.1
 cycler==0.10.0
 docutils==0.17.1
@@ -22,6 +25,7 @@ iniconfig==1.1.1
 isort==5.10.1
 itsdangerous==2.0.1
 Jinja2==3.0.2
+jmespath==0.10.0
 kiwisolver==1.3.2
 lazy-object-proxy==1.6.0
 MarkupSafe==2.0.1
@@ -31,6 +35,7 @@ mccabe==0.6.1
 np==1.0.2
 numpy==1.21.3
 packaging==21.2
+pandas==1.3.4
 Pillow==8.4.0
 platformdirs==2.4.0
 pluggy==1.0.0
@@ -49,6 +54,7 @@ python-dateutil==2.8.2
 python-dotenv==0.19.1
 pytz==2021.3
 requests==2.26.0
+s3transfer==0.5.0
 six==1.16.0
 snowballstemmer==2.1.0
 Sphinx==4.3.0
