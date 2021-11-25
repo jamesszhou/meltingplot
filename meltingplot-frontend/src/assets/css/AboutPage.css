@@ -1,0 +1,19 @@
+h4 {
+  border-bottom: 1px solid #f5593d;
+}
+li p {
+  font-weight: 500;
+}
+a {
+  color: blue;
+  font-weight: 300;
+}
+.avatar {
+  position: relative;
+  top: -5em;
+  z-index: 2;
+}
+.name {
+  position: relative;
+  top: -3em;
+}

@@ -12,8 +12,8 @@ import PageFooter from "../components/Footers/PageFooter.js";
 import PythonDisplay from "../components/Content/PythonDisplay.js";
 import {Row, Col, Button, Input, Card, CardBody, CardTitle, Container} from "reactstrap"
 
-
-function LandingPage() {
+/* Main page alloweing user to create graph */
+function InteractivePage() {
 
   const [title, setTitle] = React.useState('Project title');
   const [description, setDescription] = React.useState('');
@@ -57,7 +57,7 @@ function LandingPage() {
                           setDescription={setDescription} 
       />
       <Button onClick={handleAddClick}>Add Line</Button>
-{inputList.map((x, i) => {
+      {inputList.map((x, i) => {
         return (
           <Container>
           <Card>
@@ -82,8 +82,6 @@ function LandingPage() {
               </div>
                 </Col>
               </Row>
-              
-            
             </CardTitle>
             <CardBody>
             <Row>
@@ -118,10 +116,6 @@ function LandingPage() {
                 />
                 </Col>
                 </Row>
-             
-           
-
-            
             </CardBody>
           </Card>
           </Container>
@@ -179,4 +173,4 @@ function LandingPage() {
   );
 }
 
-export default LandingPage;
+export default InteractivePage;
