@@ -3,7 +3,7 @@
 /api/resources/__pycache__/
 /api/models/__pycache__/
 
-meltingplot-frontent/build/
+/meltingplot-frontent/build/
 
 .DS_Store
 .env
