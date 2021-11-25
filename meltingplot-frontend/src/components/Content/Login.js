@@ -8,8 +8,10 @@ import {
     ModalFooter,
     ModalHeader,
 } from "reactstrap";
+import {useHistory} from "react-router-dom";
 
 function Login(props) {
+    const history = useHistory();
 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -17,8 +19,28 @@ function Login(props) {
     const [loginError, setLoginError] = React.useState("");
 
     const login = () => {
+       
         // Make login request
-        props.toggleLoginModal();
+        fetch(`${window.location.origin}/api/user?username=${username}&password=${password}`, {
+            method: "GET"
+        })
+        .then((response) => {
+            if (response.status === 200) {
+                return response.json()
+            }
+            else{
+                response.json().then(text => { throw new Error(text.error) })
+            } 
+        })
+        .then( (response) => {
+            props.toggleLoginModal();
+            history.push(`/project-page/?user_id=${response.user_id}`);
+        }
+        )
+        .catch(error => {
+            setLoginError(error.message)
+          })
+        
     }
 
     const cancelLogin = () => {

@@ -18,12 +18,15 @@ function ProjectsList(props) {
 
     const parseProjects = () => {
         let list = [];
-
-        if (props.projects.length == 0) {
+        console.log(props.projects)
+        if (props.projects === undefined){
+            return [];
+        }
+        else if (props.projects.length == 0) {
             return list;
         }
 
-        JSON.parse(props.projects).forEach(project => {
+        props.projects.forEach(project => {
             list.push(
                 <Container>
                     <Navbar>

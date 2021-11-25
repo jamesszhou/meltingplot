@@ -18,7 +18,7 @@ class Project(Resource):
         """
         Get a project by id
         """
-        if not request.args["project_id"]:
+        if "project_id" not in request.args:
             return {'error': 'no project_id provided'}, 404
         project = ProjectsModel.get_project(request.args["project_id"])
         if not project:

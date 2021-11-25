@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import queryString  from 'query-string';
 import { Card, CardBody, Container } from "reactstrap";
 
@@ -13,29 +13,32 @@ function ProjectsPage() {
     const userId = queryString.parse(useLocation().search)?.user_id;
 
     const getProjects = () => {
-        if (userId === undefined) {
+        if (userId === undefined || userId === "") {
             return [];
         }
 
         // Retrieve user's projects
         fetch(`${window.location.origin}/api/projects/?user_id=${userId}`, {
             method: "GET"
-        })
+        }).then((response) => response.json())
             .then(
-                (response) => {
-                    if (response.ok) {
-                        console.log(response);
-                        return response;
-                    }
-                    else {
-                        alert("Could not retrieve projects for user.");
-                    }
+                (value) => {
+                    setProjectsJson(value);
+                    setLoading(false);
                 }
             )
+            .catch((error) =>{
+                alert("Could not retrieve projects for user.");
+                setLoading(false);
+            }
+            )
     }
-
-    const [projectsJson, setProjectsJson] = React.useState(getProjects);
-
+   
+    const [loading, setLoading] = React.useState(true);
+    const [projectsJson, setProjectsJson] = React.useState(undefined);
+    React.useEffect(() => {
+        getProjects()
+      });
     return (
         <>
             <Container>
@@ -43,11 +46,12 @@ function ProjectsPage() {
                     Projects:
                 </h1>
             </Container>
-            <ProjectsList projects={projectsJson} />
-            <Container hidden={userId !== undefined}>
+            {!loading ? <ProjectsList projects={projectsJson} /> : <div> LOADING...</div>}
+            
+            <Container hidden={userId !== undefined && userId !== ""}>
                 <Card>
                     <CardBody>
-                        Please log in to see your saved projects.
+                        Please <Link to={"/index"}> log in </Link>to see your saved projects.
                     </CardBody>
                 </Card>
             </Container>
