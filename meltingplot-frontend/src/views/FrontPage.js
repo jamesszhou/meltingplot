@@ -72,7 +72,8 @@ function FrontPage() {
                     <Col></Col>
                     <Col className="class-col">
                         <Button onClick={toggleLoginModal}> Login </Button>
-                        <Button onClick={toggleUsernameModal}> Create Account </Button>
+                    </Col>
+                    <Col><Button onClick={toggleUsernameModal}> Create Account </Button>
                     </Col>
                     <Col></Col>
                 </Row>

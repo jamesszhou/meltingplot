@@ -43,9 +43,16 @@ p {
     font-size: min(200%, 5vmin);
 }
   
-.buttons {
+.class-col {
+    display: flex;
     align-items: center;
     justify-content: center;
+    flex: 1;
+    height: 100%;
+}
+
+.main-container {
+    display: flex;
 }
   
 h1, p, body {
