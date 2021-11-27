@@ -2,6 +2,8 @@ import React from "react";
 
 import loadingCircle from "../../assets/img/LoadingCircle.gif";
 
+
+
 function GraphDisplay(props) {
     const [isLoaded, setIsLoaded] = React.useState(false);
     const [error, setError] = React.useState(null);

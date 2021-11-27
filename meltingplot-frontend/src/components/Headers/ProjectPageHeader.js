@@ -30,24 +30,6 @@ function ProjectPageHeader(props) {
     const toggleFileModal = () => {
         setFileModal(!fileModal);
     }
-    const saveProject = () => {
-        fetch(`${window.location.origin}/api/project/?config=${JSON.stringify(props.getConfig())}&project_id=${props.project_id}&title=${props.title}&description=${props.description}&user_id=${props.user_id}`, {
-            method: "PUT"
-        }).then((response) => response.json().then((data) => ({status: response.status, body: data})))
-            .then((obj) => {
-                if (obj.status === 200){
-                    alert("Project Saved.")
-                }
-                else{
-                    alert("Could not save project.");
-                }
-            }
-            )
-            .catch((error) =>{
-                alert("Could not save project.");
-            }
-        )
-    }
 
     return (
         <>
@@ -63,7 +45,7 @@ function ProjectPageHeader(props) {
                     </Nav>
                     <Nav>
                         <NavItem>
-                            <Button onClick={saveProject} >
+                            <Button>
                                 Save Project
                             </Button>
                         </NavItem>
@@ -91,7 +73,6 @@ function ProjectPageHeader(props) {
                                 </Label>
                                 <Input
                                     type="textarea"
-                                    defaultValue={props.description}
                                     invalid={props.description.length > 120}
                                     onInput={e => props.setDescription(e.target.value)} />
                                 <FormFeedback hidden={props.description.length <= 120}>

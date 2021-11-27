@@ -18,6 +18,5 @@ yarn-error.log*
 /venv
 node_modules/
 
-.pytest_cache
 
-*.icloud
+.pytest_cache
