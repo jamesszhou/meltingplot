@@ -24,17 +24,20 @@ function AxesLabels(props) {
                 X-axis Label:
             </div>
             <InputGroup>
-                
-                <Input  onInput={e => updateXLabel(e.target.value)}
-                        placeholder="input name of X axis here"/>
+                <Input  
+                        value = {props.xLabel}
+                        placeholder="input name of X axis here"
+                        onInput={e => updateXLabel(e.target.value)}/>
             </InputGroup>
             <br />
             <div>
                 Y-axis Label:
             </div>
             <InputGroup>
-                <Input  onInput={e => updateYLabel(e.target.value)}
-                        placeholder="input name of Y axis here"/>
+                <Input  
+                        value = {props.yLabel}
+                        placeholder="input name of Y axis here"
+                        onInput={e => updateYLabel(e.target.value)}/>
             </InputGroup>
             <br />
         </Container>

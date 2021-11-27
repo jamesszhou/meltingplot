@@ -1,0 +1,15 @@
+img {
+  height: 100%;
+  width: 100%;
+}
+
+@media only screen and (max-width: 992px) {
+  .displayNoneSmall {
+    display: none;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .displayNoneBig {
+    display: none;
+  }
+}

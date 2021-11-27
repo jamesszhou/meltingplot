@@ -18,6 +18,7 @@ function Legend(props) {
                 </InputGroupText>
                 <Input  type="checkbox"
                         addon
+                        defaultValue = {props.legend}
                         onChange={(e) => props.setLegend(e.target.checked)}
                 />
             </InputGroup>

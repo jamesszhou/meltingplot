@@ -43,6 +43,7 @@ class Graph(Resource):
                 return {"message": "could not generate python code"}, 400
             if code is None:
                 return {"message": "could not parse json of request"}, 400
+        print(code)
         try:
             exec(code)
         except Exception as e:

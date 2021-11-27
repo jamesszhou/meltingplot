@@ -59,8 +59,8 @@ class ProjectsModel(db.Model):
     @staticmethod
     def get_projects_by_user_id(user_id):
         try:
-            return ProjectsModel.query.filter_by(user_id=user_id).all()
-        except: 
+            return ProjectsModel.query.with_entities(ProjectsModel.user_id, ProjectsModel.project_id, ProjectsModel.title, ProjectsModel.description).filter_by(user_id=user_id).all()
+        except:
             None
 
     @staticmethod
