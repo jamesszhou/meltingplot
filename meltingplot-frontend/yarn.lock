@@ -1173,7 +1173,7 @@
 
 "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.3.1":
   version "7.16.3"
-  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.16.3.tgz"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.3.tgz#b86f0db02a04187a3c17caa77de69840165d42d5"
   integrity sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==
   dependencies:
     regenerator-runtime "^0.13.4"

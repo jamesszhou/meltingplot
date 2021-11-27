@@ -8,16 +8,39 @@ import {
     ModalFooter,
     ModalHeader,
 } from "reactstrap";
+import {useHistory} from "react-router-dom";
 
 function CreateAccount(props) {
     const validRegex = new RegExp('^[a-zA-Z0-9]*$');
-
+    const history = useHistory();
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [check, setCheck] = React.useState("");
 
     const [usernameError, setUsernameError] = React.useState("");
     const [passwordError, setPasswordError] = React.useState("");
+
+    const addUser = (username, password) => {
+        fetch(`${window.location.origin}/api/user/?username=${username}&password=${password}`, {
+            method: "POST"
+        })
+        .then((response) => response.json().then((data) => ({status: response.status, body: data})))
+        .then( (obj) => {
+            if (obj.status === 201){
+                history.push(`/project-page/?user_id=${obj.body.user_id}`);
+            }
+            else{
+                setPasswordError(obj.body.error);
+            }
+        }
+        ).catch(
+            (error) =>{
+                console.log(error);
+                setPasswordError("User creation Failed, please try again");
+            }
+            
+        )
+    }
 
     const validateUsername = () => {
         if (username.length < 8) {
@@ -49,7 +72,7 @@ function CreateAccount(props) {
             setPasswordError("");
             
             // Add user to database
-
+            addUser(username, password);
             props.toggleCheckModal();
         } else {
             setCheck("");

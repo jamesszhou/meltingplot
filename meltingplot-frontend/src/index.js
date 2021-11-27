@@ -16,7 +16,7 @@ ReactDOM.render(
     <Switch>
       <Route path="/index" render={(props) => <FrontPage {...props} />} />
       <Route path="/interactive-page" render={(props) => <InteractivePage {...props} />} />
-      <Route path="/project-page" render={(props) => <ProjectsPage {...props} />} />
+      <Route path="/project-page/" render={(props) => <ProjectsPage {...props} />} />
       <Redirect to="/index"/>
     </Switch>
   </HashRouter>,
