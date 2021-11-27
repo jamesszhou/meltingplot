@@ -1,5 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/ProjectsPage.css';
 import { useLocation } from 'react-router-dom';
 import queryString  from 'query-string';
 import { Card, CardBody, Container } from "reactstrap";
@@ -37,7 +38,10 @@ function ProjectsPage() {
     const [projectsJson, setProjectsJson] = React.useState(getProjects);
 
     return (
-        <>
+        <div className="bg" style={{
+            width: '100vw',
+            height: '100vh',
+        }}>
             <Container>
                 <h1>
                     Projects:
@@ -51,7 +55,7 @@ function ProjectsPage() {
                     </CardBody>
                 </Card>
             </Container>
-        </>
+        </div>
     );
 }
 

@@ -54,13 +54,14 @@ function FrontPage() {
         }}>
             <div style={{ 
                 backgroundImage: `url(${banner})`,
-                backgroundPosition: 'left',
+                backgroundPosition: 'center',
                 backgroundSize: 'contain',
                 backgroundRepeat: 'repeat',
                 width: '100vw',
                 height: '10vh',
             }}>
             </div>
+            <br/>
             <h1>Welcome</h1>
             <h2>to</h2>
             <article>
