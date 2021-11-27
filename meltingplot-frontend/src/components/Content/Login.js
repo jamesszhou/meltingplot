@@ -24,22 +24,23 @@ function Login(props) {
         fetch(`${window.location.origin}/api/user?username=${username}&password=${password}`, {
             method: "GET"
         })
-        .then((response) => {
-            if (response.status === 200) {
-                return response.json()
+        .then((response) => response.json().then((data) => ({status: response.status, body: data})))
+        .then( (obj) => {
+            if (obj.status === 200){
+                history.push(`/project-page/?user_id=${obj.body.user_id}`);
+                props.toggleLoginModal();
             }
             else{
-                response.json().then(text => { throw new Error(text.error) })
-            } 
-        })
-        .then( (response) => {
-            props.toggleLoginModal();
-            history.push(`/project-page/?user_id=${response.user_id}`);
+                setLoginError(obj.body.error)
+            }
         }
+        ).catch(
+            (error) =>{
+                console.log(error);
+                setLoginError("Login Failed, please try again");
+            }
+            
         )
-        .catch(error => {
-            setLoginError(error.message)
-          })
         
     }
 

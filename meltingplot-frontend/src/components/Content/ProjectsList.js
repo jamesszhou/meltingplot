@@ -10,33 +10,39 @@ import {
     NavbarBrand,
     Navbar
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
-const projectRoute = "/index/?project_id=";
+const projectRoute = "/interactive-page/?project_id=";
 const userParam = "&user_id="
 
 function ProjectsList(props) {
 
     const parseProjects = () => {
+        console.log(props.projects);
         let list = [];
-        console.log(props.projects)
         if (props.projects === undefined){
             return [];
         }
-        else if (props.projects.length == 0) {
+        else if (props.projects.length === 0) {
             return list;
         }
 
-        props.projects.forEach(project => {
+        props.projects.forEach((project, index) => {
             list.push(
-                <Container>
+                <Container key={index}>
                     <Navbar>
                         <Nav>
-                            <NavbarBrand href={projectRoute + project.project_id + userParam + project.user_id}
+                            <NavbarBrand
                                 data-placement="bottom"
                                 title="Title">
+                                <Link to={projectRoute + project.project_id + userParam + project.user_id}>
                                 {project.title}
+                                </Link>
                             </NavbarBrand>
                         </Nav>
+                        <Button onClick={() => props.deleteProject(project.project_id, index)}>
+                            Delete
+                        </Button>
                     </Navbar>
                     <Card>
                         <CardBody>
@@ -50,11 +56,9 @@ function ProjectsList(props) {
         return list;
     }
 
-    const projectsList = React.useState(parseProjects);
-
     return (
         <>
-            <ul>{projectsList}</ul>
+            {props.projects === undefined || props.projects.length === 0 ? <Container> <Card><CardBody>No Projects Found</CardBody> </Card> </Container>: <ul>{parseProjects()}</ul>}
         </>
     );
 }

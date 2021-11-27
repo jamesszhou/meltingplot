@@ -11,10 +11,14 @@ import GraphDisplay from "../components/Content/GraphDisplay.js";
 import PageFooter from "../components/Footers/PageFooter.js";
 import PythonDisplay from "../components/Content/PythonDisplay.js";
 import {Row, Col, Button, Input, Card, CardBody, CardTitle, Container} from "reactstrap"
+import { useLocation} from 'react-router-dom';
+import queryString  from 'query-string';
 
 /* Main page alloweing user to create graph */
 function InteractivePage() {
 
+  const projectId = queryString.parse(useLocation().search)?.project_id;
+  const userId = queryString.parse(useLocation().search)?.user_id;
   const [title, setTitle] = React.useState('Project title');
   const [description, setDescription] = React.useState('');
   const [xLabel, setXLabel] = React.useState(false);
@@ -22,6 +26,7 @@ function InteractivePage() {
   const [legend, setLegend] = React.useState(false);
 
   const [inputList, setInputList] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
   // handle input change
   const handleInputChange = (e, index) => {
@@ -46,15 +51,66 @@ function InteractivePage() {
 
   // handle click event of the Add button
   const handleAddClick = () => {
-    setInputList([...inputList, { GraphType: null, GraphData: {Color: null, XData: null, YData: null, Label: null} }]);
+    setInputList([...inputList, { GraphType: undefined, GraphData: {Color: undefined, XData: undefined, YData: undefined, Label: undefined} }]);
   };
+
+  const getProject = () => {
+
+    // Retrieve user's projects
+    fetch(`${window.location.origin}/api/project/?project_id=${projectId}`, {
+        method: "GET"
+    }).then((response) => response.json())
+        .then(
+            (value) => {
+              console.log(value);
+              setTitle(value.title);
+              setDescription(value.description);
+              const config = JSON.parse(value.config)
+              setInputList(config.Lines)
+              setXLabel(config.Attributes.XLabel);
+              setYLabel(config.Attributes.YLabel);
+              setLegend(config.Attributes.Legend);
+              setLoading(false)
+            }
+        )
+        .catch((error) =>{
+            alert("Could not retrieve project config for user.");
+            setLoading(false);
+        }
+        )
+}
+  const getConfig = () => ({
+    
+      "Lines": inputList,
+      "Attributes": {
+        "Title": title,
+        "XLabel": xLabel,
+        "YLabel": yLabel,
+        "Legend": legend
+      }
+    
+  });
+
+  React.useEffect(() => {
+    if (projectId !== undefined && userId !== undefined){
+      getProject()
+    }
+    else{
+      setLoading(false);
+    }
+  }, []);
 
   return (
     <>
+    {!loading ?
+    <div>
       <ProjectPageHeader  title={title} 
                           setTitle={setTitle} 
                           description={description} 
                           setDescription={setDescription} 
+                          getConfig = {getConfig}
+                          project_id = {projectId}
+                          user_id = {userId}
       />
       <Button onClick={handleAddClick}>Add Line</Button>
       {inputList.map((x, i) => {
@@ -137,38 +193,17 @@ function InteractivePage() {
       <Col/>
 
         <Col>
-        <PythonDisplay config={
-          {
-            "Lines": inputList,
-            "Attributes": {
-              "Title": title,
-              "XLabel": xLabel,
-              "YLabel": yLabel,
-              "Legend": legend
-            }
-          }
-        }
-      />
+        <PythonDisplay config={getConfig()}/>
         </Col>
       <Col>
-      <GraphDisplay config={
-          {
-            "Lines": inputList,
-            "Attributes": {
-              "Title": title,
-              "XLabel": xLabel,
-              "YLabel": yLabel,
-              "Legend": legend
-            }
-          }
-        }
-      />
+      <GraphDisplay config={getConfig()}/>
       </Col>
       <Col/>
       </Row>
       
       
       <PageFooter/>
+      </div> : <div> LOADING...</div>}
     </>
   );
 }

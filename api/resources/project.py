@@ -52,7 +52,8 @@ class Project(Resource):
         """
         req_data = jsonify(request.args).json
         try:
-            data = project_schema.load(req_data, partial=("project_id",))
+            data = project_schema.load(req_data, partial=(
+                "project_id", "description", "config"))
         except Exception as error:
             return {'error': error}, 400
         project = ProjectsModel(data)
@@ -70,8 +71,6 @@ class Projects(Resource):
             return {'error': 'no user_id provided'}, 404
         projects = ProjectsModel.get_projects_by_user_id(
             request.args["user_id"])
-        if not projects:
-            return {'error': 'projects not found'}, 404
 
         ser_project = projects_schema.dump(projects)
         return ser_project, 200
