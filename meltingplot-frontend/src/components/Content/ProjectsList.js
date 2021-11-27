@@ -2,7 +2,6 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {
-    Button,
     Card,
     CardBody,
     Container,
@@ -20,11 +19,8 @@ function ProjectsList(props) {
     const parseProjects = () => {
         console.log(props.projects);
         let list = [];
-        if (props.projects === undefined){
+        if (props.projects === undefined || props.projects.length === 0){
             return [];
-        }
-        else if (props.projects.length === 0) {
-            return list;
         }
 
         props.projects.forEach((project, index) => {

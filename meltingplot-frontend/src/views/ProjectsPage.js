@@ -1,6 +1,8 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useLocation, Link } from 'react-router-dom';
+import '../css/ProjectsPage.css';
+
+import { useLocation } from 'react-router-dom';
 import queryString  from 'query-string';
 import { Card, CardBody, Container, Row, Col, Button } from "reactstrap";
 import {useHistory} from "react-router-dom";
@@ -96,7 +98,10 @@ function ProjectsPage() {
         getProjects();
       }, []);
     return (
-        <>
+        <div className="bg" style={{
+            width: '100vw',
+            height: '100vh',
+        }}>
             <Container>
                 <br/>
                 <Row>
@@ -122,7 +127,7 @@ function ProjectsPage() {
                     </CardBody>
                 </Card>
             </Container>
-        </>
+        </div>
     );
 }
 

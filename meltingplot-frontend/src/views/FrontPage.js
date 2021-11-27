@@ -1,25 +1,30 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import IndexNavbar from "../components/Navbars/IndexNavbar.js";
-import FrontPageHeader from "../components/Headers/FrontPageHeader.js";
 import Login from '../components/Content/Login.js';
 import CreateAccount from "../components/Content/CreateAccount.js";
+
 import {
-    Button
+    Button,
+    Container,
+    Row,
+    Col
 } from "reactstrap";
-import background from '../assets/img/Samueli.jpeg';
+
+// import background from '../assets/img/Samueli.jpeg';
+import banner from '../assets/img/clipart1664601.png';
+import '../css/FrontPage.css';
 
 /* First page a user reaches, allows sign in */
 function FrontPage() {
 
-    document.documentElement.classList.remove("nav-open");
-    React.useEffect(() => {
-        document.body.classList.add("profile-page");
-        return function cleanup() {
-            document.body.classList.remove("profile-page");
-        };
-    });
+    // document.documentElement.classList.remove("nav-open");
+    // React.useEffect(() => {
+    //     document.body.classList.add("profile-page");
+    //     return function cleanup() {
+    //         document.body.classList.remove("profile-page");
+    //     };
+    // });
 
     const [loginModal, setLoginModal] = React.useState(false);
     const [usernameModal, setUsernameModal] = React.useState(false);
@@ -43,29 +48,37 @@ function FrontPage() {
     }
 
     return (
-        <>
-            <IndexNavbar />
-
-            <FrontPageHeader />
-        
-        <div style={{ 
-            backgroundImage: `url(${background})`,
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
+        <div className="bg" style={{
             width: '100vw',
-            height: '100vh'
+            height: '100vh',
         }}>
-            <Button  
-                onClick={toggleLoginModal}
-            >
-                Login
-            </Button>
-            <Button
-                onClick={toggleUsernameModal}
-            >
-                Create Account
-            </Button>
+            <div style={{ 
+                backgroundImage: `url(${banner})`,
+                backgroundPosition: 'center',
+                backgroundSize: 'contain',
+                backgroundRepeat: 'repeat',
+                width: '100vw',
+                height: '10vh',
+            }}>
+            </div>
+            <br/>
+            <h1>Welcome</h1>
+            <h2>to</h2>
+            <article>
+                <h1>Melting Plot</h1>
+                <p>CS 130 Fall '21</p>
+            </article>
+            <Container>
+                <Row className="main-container">
+                    <Col></Col>
+                    <Col className="class-col">
+                        <Button onClick={toggleLoginModal}> Login </Button>
+                    </Col>
+                    <Col><Button onClick={toggleUsernameModal}> Create Account </Button>
+                    </Col>
+                    <Col></Col>
+                </Row>
+            </Container>
             <Login
                 loginModal={loginModal}
                 toggleLoginModal={toggleLoginModal}
@@ -79,7 +92,6 @@ function FrontPage() {
                 toggleCheckModal={toggleCheckModal}
             />
         </div>
-        </>
     );
 }
 

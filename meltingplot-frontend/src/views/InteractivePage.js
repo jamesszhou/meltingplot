@@ -1,5 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/FrontPage.css';
 
 // core components
 import ProjectPageHeader from "../components/Headers/ProjectPageHeader.js";
@@ -103,7 +104,10 @@ function InteractivePage() {
   return (
     <>
     {!loading ?
-    <div>
+    <div className="bg" style={{
+      width: '100vw',
+      height: '100vh',
+    }}>
       <ProjectPageHeader  title={title} 
                           setTitle={setTitle} 
                           description={description} 
@@ -112,86 +116,86 @@ function InteractivePage() {
                           project_id = {projectId}
                           user_id = {userId}
       />
-      <Button onClick={handleAddClick}>Add Line</Button>
-      {inputList.map((x, i) => {
-        return (
-          <Container>
-          <Card>
-            <CardTitle>
-            Title:
-              <Row>
-                <Col>
-                <Input
-                className="ml10"
-                name="Label"
-                placeholder="Line title"
-                value={x.GraphData.Label}
-                onChange={e => handleGraphData(e, i)}
-              />
-              </Col>
-              <Col  md={{ size: 2, offset: 4 }}>
-               <div className="btn-box">
-                {inputList.length !== 0 && <Button
-                  className="mr10"
-                  onClick={() => handleRemoveClick(i)}>Remove Line</Button>}
-                
-              </div>
-                </Col>
-              </Row>
-            </CardTitle>
-            <CardBody>
-            <Row>
-            <GraphType graphType={x.GraphType}
-                    setGraphType={e => handleInputChange(e,i)}/>
-              <GraphColor graphColor={x.GraphData.Color}
-                    setGraphColor={e => handleGraphData(e,i)}
-              />
-            </Row>
-            <Row>
-              <Col>
-                <div>
-                X Data:
-                </div>
-                <Input
-                    name="XData"
-                    placeholder="X Axis Data"
-                    value={x.GraphData.XData}
-                    onChange={e => handleGraphData(e, i)}
-                  />
-              </Col>
-              <Col>
-              <div>
-                Y Data:
-              </div>
-                <Input
+      <Container>
+        <Button onClick={handleAddClick}>Add Line</Button>
+        {inputList.map((x, i) => {
+          return (
+            <Container>
+            <Card>
+              <CardTitle>
+              Title:
+                <Row>
+                  <Col>
+                  <Input
                   className="ml10"
-                  name="YData"
-                  placeholder="Y Axis Data"
-                  value={x.GraphData.YData}
+                  name="Label"
+                  placeholder="Line title"
+                  value={x.GraphData.Label}
                   onChange={e => handleGraphData(e, i)}
                 />
                 </Col>
+                <Col  md={{ size: 2, offset: 4 }}>
+                <div className="btn-box">
+                  {inputList.length !== 0 && <Button
+                    className="mr10"
+                    onClick={() => handleRemoveClick(i)}>Remove Line</Button>}
+                  
+                </div>
+                  </Col>
                 </Row>
-            </CardBody>
-          </Card>
-          </Container>
-        );
-      })}
-      <div>
-        {JSON.stringify(inputList)}
-      </div>
-      
-      <AxesLabels xLabel={xLabel}
-                  setXLabel={setXLabel}
-                  yLabel={yLabel}
-                  setYLabel={setYLabel}
-      />
-      <Legend legend={legend}
-              setLegend={setLegend}
-      />
-      <Row>
-      <Col/>
-
+              </CardTitle>
+              <CardBody>
+              <Row>
+              <GraphType graphType={x.GraphType}
+                      setGraphType={e => handleInputChange(e,i)}/>
+                <GraphColor graphColor={x.GraphData.Color}
+                      setGraphColor={e => handleGraphData(e,i)}
+                />
+              </Row>
+              <Row>
+                <Col>
+                  <div>
+                  X Data:
+                  </div>
+                  <Input
+                      name="XData"
+                      placeholder="X Axis Data"
+                      value={x.GraphData.XData}
+                      onChange={e => handleGraphData(e, i)}
+                    />
+                </Col>
+                <Col>
+                <div>
+                  Y Data:
+                </div>
+                  <Input
+                    className="ml10"
+                    name="YData"
+                    placeholder="Y Axis Data"
+                    value={x.GraphData.YData}
+                    onChange={e => handleGraphData(e, i)}
+                  />
+                  </Col>
+                  </Row>
+              </CardBody>
+            </Card>
+            </Container>
+          );
+        })}
+        <div>
+          {JSON.stringify(inputList)}
+        </div>
+        
+        <AxesLabels xLabel={xLabel}
+                    setXLabel={setXLabel}
+                    yLabel={yLabel}
+                    setYLabel={setYLabel}
+        />
+        <Legend legend={legend}
+                setLegend={setLegend}
+        />
+        <Row>
+        <Col/>
         <Col>
         <PythonDisplay config={getConfig()}/>
         </Col>
@@ -200,8 +204,6 @@ function InteractivePage() {
       </Col>
       <Col/>
       </Row>
-      
-      
       <PageFooter/>
       </div> : <div> LOADING...</div>}
     </>
