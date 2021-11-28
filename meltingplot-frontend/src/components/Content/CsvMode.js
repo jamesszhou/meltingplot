@@ -25,7 +25,6 @@ function CsvMode(props) {
         )
     }
     React.useEffect(() => {
-        console.log(props.csvUpload)
         if (props.projectId !== undefined){
           getMode()
         }

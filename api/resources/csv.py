@@ -4,6 +4,8 @@ from flask_restful import Resource
 from flask import send_file, request
 from werkzeug.utils import secure_filename
 import boto3
+import pandas as pd
+from io import StringIO
 
 s3 = boto3.client('s3',
                   aws_access_key_id=os.environ.get(
@@ -11,10 +13,31 @@ s3 = boto3.client('s3',
                   aws_secret_access_key=os.environ.get(
                       'AWS_SECRET')
                   )
+s3r = boto3.resource('s3',
+                     aws_access_key_id=os.environ.get(
+                         'AWS_ACCESS'),
+                     aws_secret_access_key=os.environ.get(
+                         'AWS_SECRET')
+                     )
 BUCKET_NAME = 'meltingplotcsv'
 
 
 class CSV(Resource):
+    def get(self):
+        if "project_id" in request.args:
+            try:
+                obj = s3r.Object(BUCKET_NAME, '{}.csv'.format(
+                    request.args["project_id"]))
+            except ClientError as error:
+                return {"message": "could not retrieve csv"}, 400
+            else:
+                value = obj.get()['Body'].read().decode('utf-8')
+                df = pd.read_csv(StringIO(value), sep=",")
+                return {"data": list(df.columns)}
+
+        else:
+            return {"message": "could not parse json of request"}, 400
+
     def post(self):
         if not request.args["project_id"]:
             return {'error': 'no project_id provided'}, 404

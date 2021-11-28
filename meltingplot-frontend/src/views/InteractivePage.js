@@ -66,7 +66,6 @@ function InteractivePage() {
     }).then((response) => response.json())
         .then(
             (value) => {
-              console.log(value);
               setTitle(value.title);
               if (value.description !== null){
                 setDescription(value.description);

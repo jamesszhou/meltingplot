@@ -32,8 +32,6 @@ function ProjectPageHeader(props) {
         setFileModal(!fileModal);
     }
     const saveProject = () => {
-        console.log(props.project_id);
-        console.log(props.user_id);
         fetch(`${window.location.origin}/api/project/?project_id=${props.project_id}&user_id=${props.user_id}&title=${props.title}&description=${props.description}&config=${JSON.stringify(props.getConfig())}`, {
             method: "PUT"
         }).then((response) => response.json().then((data) => ({status: response.status, body: data})))

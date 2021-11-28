@@ -32,7 +32,6 @@ function FileUploadModal(props) {
 
         let formData = new FormData();
         formData.append("file", e.target.elements.fileInput.files[0]);
-        console.log(props.project_id);
         fetch(`${window.location.origin}/api/csv/?project_id=${props.project_id}`, {
             method: "POST",
             body: formData
