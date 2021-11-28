@@ -19,6 +19,7 @@ import {
 import FileUploadModal from "../Modals/FileUploadModal.js";
 
 function ProjectPageHeader(props) {
+    
 
     const [titleModal, setTitleModal] = React.useState(false);
     const [fileModal, setFileModal] = React.useState(false);
@@ -31,7 +32,7 @@ function ProjectPageHeader(props) {
         setFileModal(!fileModal);
     }
     const saveProject = () => {
-        fetch(`${window.location.origin}/api/project/?config=${JSON.stringify(props.getConfig())}&project_id=${props.project_id}&title=${props.title}&description=${props.description}&user_id=${props.user_id}`, {
+        fetch(`${window.location.origin}/api/project/?project_id=${props.project_id}&user_id=${props.user_id}&title=${props.title}&description=${props.description}&config=${JSON.stringify(props.getConfig())}`, {
             method: "PUT"
         }).then((response) => response.json().then((data) => ({status: response.status, body: data})))
             .then((obj) => {
@@ -61,7 +62,7 @@ function ProjectPageHeader(props) {
                             Edit Title
                         </Button>
                     </Nav>
-                    <Nav>
+                    <Nav hidden={props.project_id === undefined || props.project_id === ""}>
                         <NavItem>
                             <Button onClick={saveProject} >
                                 Save Project
@@ -78,7 +79,7 @@ function ProjectPageHeader(props) {
                         titleModal={titleModal}
                         toggleTitleModal={toggleTitleModal} />
                     <FileUploadModal fileModal={fileModal}
-                        toggleFileModal={toggleFileModal} />
+                        toggleFileModal={toggleFileModal} project_id={props.project_id} setCsvUpload ={props.setCsvUpload}/>
                 </Container>
             </Navbar>
             <Navbar>

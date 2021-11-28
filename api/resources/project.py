@@ -35,6 +35,7 @@ class Project(Resource):
 
     def put(self):
         req_data = jsonify(request.args).json
+        print(req_data)
         try:
             data = project_schema.load(req_data, partial=(
                 "description", "title", "config"))

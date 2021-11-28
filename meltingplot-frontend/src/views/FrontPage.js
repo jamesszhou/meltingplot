@@ -10,8 +10,8 @@ import {
     Row,
     Col
 } from "reactstrap";
+import {Link} from 'react-router-dom';
 
-// import background from '../assets/img/Samueli.jpeg';
 import banner from '../assets/img/clipart1664601.png';
 import '../css/FrontPage.css';
 
@@ -75,6 +75,8 @@ function FrontPage() {
                         <Button onClick={toggleLoginModal}> Login </Button>
                     </Col>
                     <Col><Button onClick={toggleUsernameModal}> Create Account </Button>
+                    </Col>
+                    <Col><Button > <Link to="/interactive-page">Try Now </Link></Button>
                     </Col>
                     <Col></Col>
                 </Row>

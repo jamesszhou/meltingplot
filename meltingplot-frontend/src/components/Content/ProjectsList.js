@@ -7,7 +7,8 @@ import {
     Container,
     Nav,
     NavbarBrand,
-    Navbar
+    Navbar,
+    Button
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
@@ -17,7 +18,6 @@ const userParam = "&user_id="
 function ProjectsList(props) {
 
     const parseProjects = () => {
-        console.log(props.projects);
         let list = [];
         if (props.projects === undefined || props.projects.length === 0){
             return [];

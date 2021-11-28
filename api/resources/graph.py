@@ -26,16 +26,17 @@ class Graph(Resource):
             try:
                 obj = s3.Object(BUCKET_NAME, '{}.csv'.format(
                     request.args["project_id"]))
-            except ClientError as error:
-                if error.response['Error']['Code'] == "404":
-                    # no csv is present for the requested project_id, generate code as if no project_id is passed
-                    code = generate_code(request.args["config"], False)
-                else:
-                    return {"message": "could not retrieve csv"}, 400
-            else:
                 value = obj.get()['Body'].read().decode('utf-8')
                 df = pd.read_csv(StringIO(value), sep=",")
                 code = generate_code(request.args["config"], True)
+            except ClientError as error:
+                # no csv is present for the requested project_id, generate code as if no project_id is passed
+                try:
+                    code = generate_code(request.args["config"], False)
+                except:
+                    return {"message": "could not generate python code"}, 400
+                if code is None:
+                    return {"message": "could not parse json of request"}, 400
         else:
             try:
                 code = generate_code(request.args["config"], False)

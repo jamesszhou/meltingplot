@@ -36,7 +36,6 @@ function Login(props) {
         }
         ).catch(
             (error) =>{
-                console.log(error);
                 setLoginError("Login Failed, please try again");
             }
             

@@ -46,7 +46,6 @@ attributes = {
     "Title": "\nplt.title(\"{}\")",
     "XLabel": "\nplt.xlabel(\"{}\")",
     "YLabel": "\nplt.ylabel(\"{}\")",
-    "Legend": "\nplt.legend()"
 }
 
 
@@ -54,6 +53,7 @@ def generate_code(request, csv_present):
     """
 
     """
+    print(csv_present)
     try:
         request = json.loads(request)
     except:
@@ -75,5 +75,9 @@ matplotlib.use('Agg')
                 innercode += graph_specs[spec].format(value)
         code += graph_types[line["GraphType"]].format(innercode)
     for key, value in request["Attributes"].items():
-        code += attributes[key].format(value)
+        if key == "Legend":
+            if value:
+                code += "\nplt.legend()"
+        else:
+            code += attributes[key].format(value)
     return code
