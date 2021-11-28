@@ -3,7 +3,7 @@ import json
 
 def test_improper_json():
     request = "this is a string not json"
-    res = generate_code(request)
+    res = generate_code(request, False)
     #print(res)
     assert res is None
 
@@ -33,7 +33,7 @@ def test_improper_json2():
             "Legend": True
         }
     }
-    res = generate_code(request)
+    res = generate_code(request, False)
     #print(res)
     assert res is None
 
@@ -62,6 +62,6 @@ def test_proper_json():
             "Legend": True
         }
     }
-    res = generate_code(json.dumps(request))
+    res = generate_code(json.dumps(request), False)
     #print(res)
     assert res is not None

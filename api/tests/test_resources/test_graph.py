@@ -46,4 +46,15 @@ def test_improper_graph():
     with app.test_request_context("/api/resources/graph/") as req:
         req.request.args = {"config": ""}
         res = graph.Graph().get()
-        assert res[0]["error"] is not None and res[1] == 400
+        assert res[0]["message"] is not None and res[1] == 400
+
+def test_improper_graph_with_project_id():
+    #try:
+    with app.test_request_context("/api/resources/graph/") as req:
+        req.request.args = {"config": "", "project_id": None}
+        try:
+            res = graph.Graph().get()
+            assert False
+        except:
+            #should get a NoCredentialsError
+            assert True

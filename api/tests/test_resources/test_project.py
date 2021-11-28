@@ -97,10 +97,10 @@ def test_improper_projects_get():
             res = pr.get()
             assert res[0]["error"] is not None and res[1] == 404
 
-def test_improper_projects_get2():
+def test_projects_get():
         from api.resources import project
         with app.test_request_context("/api/resources/project/") as req:
             pr = project.Projects()
             req.request.args = {"user_id": 1}
             res = pr.get()
-            assert res[0]["error"] is not None and res[1] == 404
+            assert res[1] == 200
