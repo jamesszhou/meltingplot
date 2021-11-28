@@ -204,6 +204,7 @@ function InteractivePage() {
       </Col>
       <Col/>
       </Row>
+      </Container>
       <PageFooter/>
       </div> : <div> LOADING...</div>}
     </>

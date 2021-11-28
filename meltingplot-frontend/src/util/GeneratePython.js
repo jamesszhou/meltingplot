@@ -51,7 +51,7 @@ function generateCode(request) {
         const yData = line["GraphData"]["YData"];
         let innerCode = `${xData},${yData}`;
         for (const [spec, value] of Object.entries(line["GraphData"])) {
-            if (value != undefined && graphSpecs(spec, value) && graphSpecs(spec, value) !== "") {
+            if (value !== undefined && graphSpecs(spec, value) && graphSpecs(spec, value) !== "") {
                 innerCode += graphSpecs(spec, value);
             }
         }

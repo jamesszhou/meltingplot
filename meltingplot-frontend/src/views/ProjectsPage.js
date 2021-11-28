@@ -2,21 +2,19 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/ProjectsPage.css';
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory, Link } from 'react-router-dom';
 import queryString  from 'query-string';
 import { Card, CardBody, Container, Row, Col, Button } from "reactstrap";
-import {useHistory} from "react-router-dom";
 
 // core components
 import ProjectsList from "../components/Content/ProjectsList";
 
 function ProjectsPage() {
     const history = useHistory();
-    // CHANGE THIS
-    const [projectsJson, setProjectsJson] = React.useState(getProjects);
+
     // Use url parameter 'user_id', if not present set to 'undefined'
     const userId = queryString.parse(useLocation().search)?.user_id;
-
+    
     const getProjects = () => {
         if (userId === undefined || userId === "") {
             return [];
@@ -38,6 +36,10 @@ function ProjectsPage() {
             }
             )
     }
+    
+    //const [projectsJson, setProjectsJson] = React.useState([{"title": "dummy title name", "description": "yeah i think it's comma"}]);
+    const [projectsJson, setProjectsJson] = React.useState(getProjects);
+
     const createProject = () => {
         fetch(`${window.location.origin}/api/project/?user_id=${userId}&title=New Project`, {
             method: "POST"
