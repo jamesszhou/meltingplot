@@ -2,21 +2,17 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/ProjectsPage.css';
 
-import { useLocation } from 'react-router-dom';
 import queryString  from 'query-string';
 import { Card, CardBody, Container, Row, Col, Button } from "reactstrap";
-import {useHistory} from "react-router-dom";
+import {useHistory, useLocation, Link} from "react-router-dom";
 
 // core components
 import ProjectsList from "../components/Content/ProjectsList";
 
 function ProjectsPage() {
     const history = useHistory();
-    // CHANGE THIS
-    const [projectsJson, setProjectsJson] = React.useState(getProjects);
     // Use url parameter 'user_id', if not present set to 'undefined'
     const userId = queryString.parse(useLocation().search)?.user_id;
-
     const getProjects = () => {
         if (userId === undefined || userId === "") {
             return [];
@@ -29,7 +25,6 @@ function ProjectsPage() {
             .then(
                 (value) => {
                     setProjectsJson(value);
-                    console.log(projectsJson);
                     setLoading(false);
                 }
             )
@@ -38,6 +33,10 @@ function ProjectsPage() {
             }
             )
     }
+    const [projectsJson, setProjectsJson] = React.useState(getProjects);
+    
+
+    
     const createProject = () => {
         fetch(`${window.location.origin}/api/project/?user_id=${userId}&title=New Project`, {
             method: "POST"
@@ -45,7 +44,7 @@ function ProjectsPage() {
         .then((response) => response.json().then((data) => ({status: response.status, body: data})))
         .then( (obj) => {
             if (obj.status === 201){
-                history.push(`/interactive-page/?user_id=${obj.body.user_id}?project_id=${obj.body.project_id}`);
+                history.push(`/interactive-page/?user_id=${obj.body.user_id}&project_id=${obj.body.project_id}`);
             }
             else{
                 alert("Could not create new project");
@@ -89,7 +88,6 @@ function ProjectsPage() {
                 )
             }
             else{
-                console.log(projectsJson)
                 return <ProjectsList projects={projectsJson} deleteProject={deleteProject}/>
             }
 
