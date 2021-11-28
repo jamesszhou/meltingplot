@@ -78,6 +78,6 @@ class ProjectsSchema(Schema):
     """
     project_id = fields.Int(required=True)
     user_id = fields.Int(required=True)
-    title = fields.Str(required=True)
-    description = fields.Str(required=True)
-    config = fields.Raw(required=True)
+    title = fields.Str(required=False)
+    description = fields.Str(required=False)
+    config = fields.Raw(required=False)

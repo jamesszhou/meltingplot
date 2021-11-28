@@ -35,7 +35,6 @@ function CreateAccount(props) {
         }
         ).catch(
             (error) =>{
-                console.log(error);
                 setPasswordError("User creation Failed, please try again");
             }
             

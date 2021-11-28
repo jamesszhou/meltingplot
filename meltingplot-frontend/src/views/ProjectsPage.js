@@ -2,9 +2,9 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/ProjectsPage.css';
 
-import { useLocation, useHistory, Link } from 'react-router-dom';
 import queryString  from 'query-string';
 import { Card, CardBody, Container, Row, Col, Button } from "reactstrap";
+import {useHistory, useLocation, Link} from "react-router-dom";
 
 // core components
 import ProjectsList from "../components/Content/ProjectsList";
@@ -27,7 +27,6 @@ function ProjectsPage() {
             .then(
                 (value) => {
                     setProjectsJson(value);
-                    console.log(projectsJson);
                     setLoading(false);
                 }
             )
@@ -47,7 +46,7 @@ function ProjectsPage() {
         .then((response) => response.json().then((data) => ({status: response.status, body: data})))
         .then( (obj) => {
             if (obj.status === 201){
-                history.push(`/interactive-page/?user_id=${obj.body.user_id}?project_id=${obj.body.project_id}`);
+                history.push(`/interactive-page/?user_id=${obj.body.user_id}&project_id=${obj.body.project_id}`);
             }
             else{
                 alert("Could not create new project");
@@ -91,7 +90,6 @@ function ProjectsPage() {
                 )
             }
             else{
-                console.log(projectsJson)
                 return <ProjectsList projects={projectsJson} deleteProject={deleteProject}/>
             }
 
