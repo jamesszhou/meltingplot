@@ -17,7 +17,7 @@ import { useLocation} from 'react-router-dom';
 import queryString  from 'query-string';
 
 
-/* Main page alloweing user to create graph */
+/* Main page allowing user to create graph */
 function InteractivePage() {
 
   const projectId = queryString.parse(useLocation().search)?.project_id;
@@ -157,6 +157,7 @@ function InteractivePage() {
                       <Col  md={{ size: 5, offset: 0 }}>
                       <div className="btn-box">
                         {inputList.length !== 0 && <Button
+                          color="danger"
                           className="mr10"
                           onClick={() => handleRemoveClick(i)}>Remove Line</Button>}
                         

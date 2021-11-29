@@ -1,6 +1,9 @@
 import React from "react";
 
+import { Button } from "reactstrap";
+
 import loadingCircle from "../../assets/img/LoadingCircle.gif";
+import reactstrapCjs from "reactstrap";
 
 function GraphDisplay(props) {
     const [isLoaded, setIsLoaded] = React.useState(false);
@@ -50,7 +53,7 @@ function GraphDisplay(props) {
             <>
             <div>
                 Click "Generate" to display your graph!
-                <button onClick={generateGraph}>Generate</button>
+                <Button color="success" onClick={generateGraph}>Generate</Button>
             </div>
             <div>
                 Error: {error}
@@ -63,7 +66,7 @@ function GraphDisplay(props) {
             return (
                 <div>
                     Click "Generate" to display your graph!
-                    <button onClick={generateGraph}>Generate</button>
+                    <Button color="success" onClick={generateGraph}>Generate</Button>
                 </div>
             );
         } else {
@@ -78,7 +81,7 @@ function GraphDisplay(props) {
                 return (
                     <div>
                         <img src={graph} alt=""></img>
-                        <button onClick={generateGraph}>Generate</button>
+                        <Button color="success" onClick={generateGraph}>Generate</Button>
                     </div>
                 );
             }
