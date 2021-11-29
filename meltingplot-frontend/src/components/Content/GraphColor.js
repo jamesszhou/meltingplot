@@ -8,29 +8,56 @@ import {
     DropdownMenu,
     DropdownToggle,
     Container
-  } from "reactstrap";
+} from "reactstrap";
 
 function GraphColor(props) {
-  
+
     const [isOpen, setIsOpen] = React.useState(false);
+    const [ddColor, setddColor] = React.useState("");
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
+    const updateDropDownColor = (color) => {
+        switch (color) {
+            case "Red":
+                setddColor("danger");
+                break;
+
+            case "Green":
+                setddColor("success");
+                break;
+            
+            case "Blue":
+                setddColor("primary");
+                break;
+
+            case "Yellow":
+                setddColor("warning");
+                break;
+
+            default: 
+                setddColor("");
+                break;
+        }
+
+    }
+
     const updateGraphColor = (action) => {
-        props.setGraphColor({"target": {"name": "Color", "value": action}});
+        updateDropDownColor(action);
+        props.setGraphColor({ "target": { "name": "Color", "value": action } });
     }
 
     return (
         <>
             <div>
-                <script type= "text/javascript">
+                <script type="text/javascript">
                     props.setGraphColor("None selected");
                 </script>
                 <Container>
                     <Dropdown toggle={toggleDropdown} isOpen={isOpen}>
-                        <DropdownToggle caret>
+                        <DropdownToggle color={ddColor} caret>
                             Graph Color: {props.graphColor}
                         </DropdownToggle>
                         <DropdownMenu container="body">
@@ -50,7 +77,7 @@ function GraphColor(props) {
                     </Dropdown>
                 </Container>
             </div>
-            <br/>
+            <br />
         </>
     );
 }

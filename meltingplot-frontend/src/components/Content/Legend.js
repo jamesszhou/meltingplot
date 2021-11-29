@@ -1,26 +1,37 @@
 import React from "react";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-// reactstrap components
 import {
+    Button,
     Input,
     InputGroup,
     InputGroupText,
     Container
-  } from "reactstrap";
+} from "reactstrap";
+
 
 function Legend(props) {
+
+    const toggleLegend = () => {
+        props.setLegend(!props.legend);
+    }
+
+    const command = () => {
+        if (props.legend) {
+            return "Remove";
+        } else {
+            return "Include";
+        }
+    }
+
+
     return (
         <Container>
             <InputGroup>
-                <InputGroupText>
-                    Legend Desired?
-                </InputGroupText>
-                <Input  type="checkbox"
-                        addon
-                        defaultValue = {props.legend}
-                        onChange={(e) => props.setLegend(e.target.checked)}
-                />
+                <Button color="dark"
+                    outline={!props.legend}
+                    onClick={toggleLegend} >
+                    {command()} Legend
+                </Button>
             </InputGroup>
             <br />
         </Container>
