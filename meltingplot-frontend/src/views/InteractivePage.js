@@ -152,6 +152,7 @@ function InteractivePage() {
                         placeholder="Line title"
                         value={x.GraphData.Label}
                         onChange={e => handleGraphData(e, i)}
+                        autoComplete="off"
                       />
                       </Col>
                       <Col  md={{ size: 5, offset: 0 }}>
@@ -183,6 +184,7 @@ function InteractivePage() {
                             placeholder="X Axis Data"
                             value={x.GraphData.XData}
                             onChange={e => handleGraphData(e, i)}
+                            autoComplete="off"
                           />
                       </Col>
                       <Col>
@@ -195,6 +197,7 @@ function InteractivePage() {
                           placeholder="Y Axis Data"
                           value={x.GraphData.YData}
                           onChange={e => handleGraphData(e, i)}
+                          autoComplete="off"
                         />
                         </Col>
                         </Row>

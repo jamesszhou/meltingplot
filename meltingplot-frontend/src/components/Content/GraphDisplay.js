@@ -74,7 +74,7 @@ function GraphDisplay(props) {
             if (!isLoaded) {
                 return (
                     <div>
-                        <img src={loadingCircle} alt=""></img>
+                        <img src={loadingCircle} width = "350px" alt=""></img>
                     </div>
                 );
             } else {
