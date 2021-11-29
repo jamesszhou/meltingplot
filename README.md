@@ -6,7 +6,7 @@ This repo implements MeltingPlot, a user-friendly website designed to be an easy
 
 ### Frontend
 
-All frontend code stored in meltingplot-frontend/src:
+All frontend code is stored in meltingplot-frontend/src:
 
 meltingplot-frontend/src     
 |      
@@ -19,8 +19,6 @@ meltingplot-frontend/src
 
 ### Backend
 
+All backend code is stored in /api/
 
-
-### Testing
-
-Testing is stored in the api/ folder.
+This includes testing (api/tests) and database (`database.py`) and graph generation (api/models).
