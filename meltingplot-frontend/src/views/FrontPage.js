@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import {Link} from 'react-router-dom';
 
-import banner from '../assets/img/clipart1664601.png';
+import banner from '../assets/img/WelcomePot.png';
 import '../css/FrontPage.css';
 
 /* First page a user reaches, allows sign in */
