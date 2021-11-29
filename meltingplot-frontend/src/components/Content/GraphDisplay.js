@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "reactstrap";
 
 import loadingCircle from "../../assets/img/LoadingCircle.gif";
-import reactstrapCjs from "reactstrap";
+import {Row, Col} from "reactstrap";
 
 function GraphDisplay(props) {
     const [isLoaded, setIsLoaded] = React.useState(false);
@@ -80,8 +80,13 @@ function GraphDisplay(props) {
             } else {
                 return (
                     <div>
-                        <img src={graph} alt=""></img>
-                        <Button color="success" onClick={generateGraph}>Generate</Button>
+                        <Row>
+                            <Button color="success" onClick={generateGraph}>Generate</Button>
+                            
+                        </Row>
+                        <Row>
+                                <img src={graph} width = "350px" alt=""></img>
+                        </Row>
                     </div>
                 );
             }

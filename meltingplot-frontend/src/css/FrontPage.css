@@ -1,76 +1,78 @@
 .title {
-    color: #F0FFF0;
-    text-align: center;
-    vertical-align: center;
+  color: #f0fff0;
+  text-align: center;
+  vertical-align: center;
 }
 
 article {
-    background-image: repeating-linear-gradient(
-        to right, 
-        blue, 
-        orange,
-        orange,
-        blue,
-        blue 100px
-    );
-    background-size: 100% 50px;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    -webkit-animation: stripes 10s linear infinite;
-    animation: stripes 10s linear infinite;
-    font-size: 100px;
-    text-align: center;
+  background-image: repeating-linear-gradient(
+    to right,
+    blue,
+    orange,
+    orange,
+    blue,
+    blue 100px
+  );
+  background-size: 100% 50px;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-animation: stripes 10s linear infinite;
+  animation: stripes 10s linear infinite;
+  font-size: 100px;
+  text-align: center;
 }
 
 @keyframes stripes {
-    100% {
-        background-position: 100px 0px;
-    }
+  100% {
+    background-position: 100px 0px;
+  }
 }
-  
+
 h1 {
-    font-size: 10vmin;
-    line-height: 1.1;
-    text-align: center;
-}  
+  font-size: 10vmin;
+  line-height: 1.1;
+  text-align: center;
+}
 
 h2 {
-    text-align: center;
+  text-align: center;
 }
 
 p {
-    font-family: "Dank Mono", ui-monospace, monospace;
-    font-size: min(200%, 5vmin);
+  font-family: "Dank Mono", ui-monospace, monospace;
+  font-size: min(200%, 5vmin);
 }
-  
+
 .class-col {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
 }
 
 .main-container {
-    display: flex;
+  display: flex;
 }
-  
-h1, p, body {
-    margin: 0;
+
+h1,
+p,
+body {
+  margin: 0;
 }
 
 html {
-    block-size: 100%;
-    inline-size: 100%;
+  block-size: 100%;
+  inline-size: 100%;
 }
 
-img {
+/* img {
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 5px;
   width: 150px;
-}
+} */
 
 .bg {
-    background-image: linear-gradient(rgb(89, 206, 226), orange);
+  background-image: linear-gradient(rgb(89, 206, 226), orange);
 }
