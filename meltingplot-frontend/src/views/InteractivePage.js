@@ -111,8 +111,8 @@ function InteractivePage() {
     <>
     {!loading ?
     <div className="bg" style={{
-      // width: '100vw',
-      // height: '100vh',
+      width: '100vw',
+      height: '100vh',
     }}>
       <ProjectPageHeader  title={title} 
                           setTitle={setTitle} 
